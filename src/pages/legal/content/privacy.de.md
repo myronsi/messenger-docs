@@ -137,9 +137,10 @@ Abschnitt 9 erläutert die automatisierten Entscheidungen und wie eine Person si
 
 Serverprotokolle erfassen technische Daten zu Anfragen (Methode, Route, Status, Dauer, eine Anfrage-ID) und bei
 Fehlern interne IDs wie deine Benutzer-ID. Sie enthalten keine IP-Adressen und keinen Nachrichtentext. Wenn Anrufe
-aktiviert sind, protokolliert der Medienserver die Namen der Anrufräume, die IDs der Teilnehmer und IP-Adressen. Vor
-jeder Aktualisierung des Dienstes wird eine Sicherung der Hauptdatenbank erstellt. Rechtsgrundlage: (f), Betrieb und
-Absicherung des Dienstes.
+aktiviert sind, protokolliert der Medienserver die Namen der Anrufräume, die IDs der Teilnehmer und IP-Adressen.
+Unser Webserver protokolliert jede Anfrage mit einer **gekürzten** IP-Adresse (der letzte Teil wird entfernt), dem
+Zeitpunkt, der aufgerufenen Adresse, dem Status und dem Browser. Vor jeder Aktualisierung des Dienstes wird eine
+Sicherung der Hauptdatenbank erstellt. Rechtsgrundlage: (f), Betrieb und Absicherung des Dienstes.
 
 ## 4. Auf deinem Gerät gespeicherte Daten
 
@@ -159,13 +160,13 @@ löschst, werden diese Daten entfernt. Wer Zugriff auf dein entsperrtes Gerät h
 
 | Daten | Speicherdauer |
 |---|---|
-| Konto, Profil, Einstellungen | Bis du sie oder dein Konto löschst |
+| Konto, Profil, Einstellungen | Bis du sie oder dein Konto löschst; ein Konto, das 2 Jahre lang niemand genutzt hat, wird gelöscht (Abschnitt 6) |
 | Nachrichten, Dateien, Reaktionen | **Keine zeitliche Begrenzung**, bis zur Löschung wie in Abschnitt 6 beschrieben |
 | Nachrichten, die auf einen erneuten Sendeversuch warten | Bis sie gesendet oder verworfen werden |
 | Nicht verwendete Uploads | 24 Stunden |
 | Anrufdaten | 90 Tage nach dem Anruf |
 | Angemeldete Sitzungen | Bis zur Abmeldung oder zum Ablauf, plus 30 Tage |
-| Sicherheitsprotokoll | Solange dein Konto besteht |
+| Sicherheitsprotokoll | 1 Jahr |
 | Daten zur Ratenbegrenzung | 1 Minute bis 1 Stunde |
 | Meldungen zu Konten | 180 Tage |
 | Meldungen zu Nachrichten und Gruppen, mit ihren Kopien | 6 Monate, auch nachdem der Chat oder die Nachricht gelöscht wurde |
@@ -175,7 +176,8 @@ löschst, werden diese Daten entfernt. Wer Zugriff auf dein entsperrtes Gerät h
 | Zugriffsprotokoll der Moderation (wer aus dem Moderationsteam welches Konto angesehen hat) | 2 Jahre |
 | Cache der Linkvorschauen | 24 Stunden (Bilder 7 Tage) |
 | Datenbanksicherungen | Bis sie ersetzt werden, nach 10 weiteren Aktualisierungen des Dienstes |
-| Serverprotokolle | [TO DECIDE: rotation period] |
+| Serverprotokolle, Protokolle des Medienservers | Bis zu 30 MB pro Dienst, dann überschrieben (in der Regel nach einigen Tagen) |
+| Webserver-Protokolle (gekürzte IP-Adressen) | 14 Tage |
 
 ## 6. Was Löschen bewirkt
 
@@ -191,6 +193,9 @@ löschst, werden diese Daten entfernt. Wer Zugriff auf dein entsperrtes Gerät h
   in noch bestehenden Gruppen gesendet hast (angezeigt als „Gelöschtes Konto“), Kopien deiner Nachrichten, die
   andere weitergeleitet haben, von dir erstellte eigene Emoji-Pakete (ohne deinen Namen), Stickerbilder und
   Anrufdaten für bis zu 90 Tage.
+- **Inaktive Konten:** Wenn sich 2 Jahre lang niemand bei einem Konto anmeldet oder es nutzt, löschen wir es genau so
+  wie mit **Konto löschen**. Wenn das Konto eine bestätigte Wiederherstellungs-E-Mail hat, schreiben wir 30 Tage
+  vorher an diese Adresse; wenn du dich vor diesem Datum anmeldest, bleibt das Konto bestehen.
 - Gelöschte Daten können in Sicherungen verbleiben, bis diese ersetzt werden (Abschnitt 5), und etwa 10 Tage lang
   in der internen Bereinigung der Datenbank.
 

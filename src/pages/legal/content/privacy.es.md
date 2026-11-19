@@ -135,8 +135,10 @@ La sección 9 explica las decisiones automatizadas y cómo las revisa una person
 Los registros del servidor recogen datos técnicos sobre las solicitudes (método, ruta, estado, duración, un identificador
 de solicitud) y, en caso de errores, identificadores internos como tu identificador de usuario. No contienen direcciones
 IP ni texto de mensajes. Cuando las llamadas están habilitadas, el servidor multimedia registra los nombres de las salas
-de llamada, los identificadores de los participantes y las direcciones IP. Antes de cada actualización del servicio se
-hace una copia de seguridad de la base de datos principal. Base jurídica: (f), operar y proteger el servicio.
+de llamada, los identificadores de los participantes y las direcciones IP. Nuestro servidor web registra cada solicitud
+con una dirección IP **acortada** (sin la última parte), la hora, la dirección solicitada, el estado y el navegador. Antes
+de cada actualización del servicio se hace una copia de seguridad de la base de datos principal. Base jurídica: (f),
+operar y proteger el servicio.
 
 ## 4. Datos almacenados en tu dispositivo
 
@@ -156,13 +158,13 @@ se eliminan. Cualquier persona con acceso a tu dispositivo desbloqueado puede ve
 
 | Datos | Plazo de conservación |
 |---|---|
-| Cuenta, perfil, ajustes | Hasta que los elimines o elimines tu cuenta |
+| Cuenta, perfil, ajustes | Hasta que los elimines o elimines tu cuenta; una cuenta que nadie ha usado durante 2 años se elimina (sección 6) |
 | Mensajes, archivos, reacciones | **Sin límite de tiempo**, hasta que se eliminen como se describe en la sección 6 |
 | Mensajes en espera de un nuevo intento de envío | Hasta que se envíen o se descarten |
 | Archivos subidos sin usar | 24 horas |
 | Registros de llamadas | 90 días después de la llamada |
 | Sesiones iniciadas | Hasta que se cierre la sesión o caduque, más 30 días |
-| Registro de seguridad | Mientras exista tu cuenta |
+| Registro de seguridad | 1 año |
 | Datos de límites de frecuencia | De 1 minuto a 1 hora |
 | Denuncias sobre cuentas | 180 días |
 | Denuncias sobre mensajes y grupos, con sus copias | 6 meses, también después de que se elimine el chat o el mensaje |
@@ -172,7 +174,8 @@ se eliminan. Cualquier persona con acceso a tu dispositivo desbloqueado puede ve
 | Registro de accesos de moderación (qué moderador consultó qué cuenta) | 2 años |
 | Caché de vistas previas de enlaces | 24 horas (imágenes, 7 días) |
 | Copias de seguridad de la base de datos | Hasta que se sustituyan, después de 10 actualizaciones posteriores del servicio |
-| Registros del servidor | [TO DECIDE: rotation period] |
+| Registros del servidor, registros del servidor multimedia | Hasta 30 MB por servicio; después se sobrescriben (normalmente al cabo de unos días) |
+| Registros del servidor web (direcciones IP acortadas) | 14 días |
 
 ## 6. Qué implica eliminar
 
@@ -188,6 +191,9 @@ se eliminan. Cualquier persona con acceso a tu dispositivo desbloqueado puede ve
   **Se conservan:** los mensajes, reacciones y archivos que enviaste en grupos que siguen existiendo (se muestran como
   "Cuenta eliminada"), las copias de tus mensajes que otras personas reenviaron, los paquetes de emojis personalizados que
   creaste (sin tu nombre), las imágenes de los stickers y los registros de llamadas durante un máximo de 90 días.
+- **Cuentas inactivas:** si nadie inicia sesión en una cuenta ni la usa durante 2 años, la eliminamos exactamente igual
+  que **Eliminar cuenta**. Si la cuenta tiene un correo electrónico de recuperación confirmado, te escribimos a esa
+  dirección 30 días antes; si inicias sesión antes de esa fecha, la cuenta se conserva.
 - Los datos eliminados pueden permanecer en las copias de seguridad hasta que se sustituyan (sección 5) y en la limpieza
   interna de la base de datos durante unos 10 días.
 
