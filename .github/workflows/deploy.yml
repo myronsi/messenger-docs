@@ -53,8 +53,24 @@ jobs:
             domain="$site.staging.messenger.viserix.com"
           fi
 
-          test -s index.html
-          printf 'url=https://%s\nuser=%s-%s\n' "$domain" "$account" "$DEPLOY_ENV" >> "$GITHUB_OUTPUT"
+          page=index.html
+          if [[ -f package.json ]]; then
+            page=dist/index.html
+          fi
+
+          printf 'url=https://%s\nuser=%s-%s\npage=%s\n' "$domain" "$account" "$DEPLOY_ENV" "$page" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        if: steps.validate.outputs.page == 'dist/index.html'
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Build page
+        if: steps.validate.outputs.page == 'dist/index.html'
+        run: |
+          npm ci
+          npm run build
 
       - name: Publish and verify
         if: steps.validate.outputs.url != ''
@@ -63,8 +79,11 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           DEPLOY_URL: ${{ steps.validate.outputs.url }}
           SSH_USER: ${{ steps.validate.outputs.user }}
+          PAGE: ${{ steps.validate.outputs.page }}
         run: |
           set -euo pipefail
+
+          test -s "$PAGE"
 
           if [[ -z "$SSH_KEY" ]]; then
             echo '::error::Set SSH_KEY in this GitHub environment.'
@@ -77,14 +96,14 @@ jobs:
           printf '%s\n' 'messenger-static ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINn+Y95r3KWNKb/Ha9j0wd8f2C9uXkOyIgFbExH7q5BF' > "$work/known_hosts"
           chmod 600 "$work/key" "$work/known_hosts"
 
-          checksum="$(sha256sum index.html | cut -d ' ' -f 1)"
+          checksum="$(sha256sum "$PAGE" | cut -d ' ' -f 1)"
           ssh -o BatchMode=yes -o ConnectTimeout=10 -o IdentitiesOnly=yes \
             -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$work/known_hosts" \
             -o HostKeyAlias=messenger-static -o HostKeyAlgorithms=ssh-ed25519 \
             -i "$work/key" -l "$SSH_USER" messenger.viserix.com \
-            "publish $checksum" < index.html
+            "publish $checksum" < "$PAGE"
 
           curl --fail --silent --show-error --retry 3 --max-time 15 \
             --header 'Cache-Control: no-cache' "$DEPLOY_URL/?deploy=$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" \
             --output "$work/public.html"
-          cmp index.html "$work/public.html"
+          cmp "$PAGE" "$work/public.html"
