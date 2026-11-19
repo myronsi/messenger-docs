@@ -1,6 +1,6 @@
 # Nutzungsbedingungen
 
-Version 0.1 (Entwurf) · Zuletzt aktualisiert: [DATE OF PUBLICATION]
+Version 0.2 (Entwurf) · Zuletzt aktualisiert: [DATE OF PUBLICATION]
 
 ## 1. Wer wir sind und was diese Bedingungen regeln
 
@@ -62,16 +62,17 @@ Du musst die Gesetze und unsere [Community-Richtlinien](#/guidelines) einhalten.
 
 ## 6. Meldungen, Moderation und Einschränkungen
 
-1. Jede Person kann in der App ein Konto, ein Sticker-Paket oder ein Emoji-Paket melden. Du kannst rechtswidrige
-   Inhalte auch an myron.ilchenko@gmail.com melden (was eine Meldung enthalten sollte, steht in den
-   Community-Richtlinien).
+1. Jede Person kann in der App ein Konto, eine Nachricht, eine Gruppe, ein Sticker-Paket oder ein Emoji-Paket melden.
+   Du kannst rechtswidrige Inhalte auch an myron.ilchenko@gmail.com melden (was eine Meldung enthalten sollte, steht in
+   den Community-Richtlinien).
 2. Meldungen ändern den Status eines Kontos automatisch. Je nach Status sind bestimmte Aktionen eingeschränkt, bis hin
    zu einem schreibgeschützten Konto. Die Seite Kontostatus zeigt deinen Status, die Einschränkungen und den Grund.
-3. Wir können außerdem Inhalte entfernen, ein Konto einschränken oder sperren oder es löschen, wenn ein Inhalt oder
-   ein Konto gegen das Gesetz oder diese Bedingungen verstößt. Wir entscheiden sorgfältig und berücksichtigen die
-   Rechte und Interessen aller Beteiligten.
-4. Du kannst in der App Einspruch einlegen, und du kannst unter myron.ilchenko@gmail.com eine Überprüfung durch eine
-   Person verlangen. Wir erläutern unsere Entscheidung.
+3. Unser Moderationsteam prüft Meldungen und automatische Entscheidungen. Wir können Inhalte entfernen, ein Paket
+   ausblenden, ein Konto einschränken oder sperren oder es löschen, wenn ein Inhalt oder ein Konto gegen das Gesetz
+   oder diese Bedingungen verstößt. Wir entscheiden sorgfältig und berücksichtigen die Rechte und Interessen aller
+   Beteiligten.
+4. Du kannst in der App Einspruch einlegen, und du kannst auf der Seite Kontostatus oder unter
+   myron.ilchenko@gmail.com eine Überprüfung durch eine Person verlangen. Wir erläutern unsere Entscheidung.
 
 ## 7. Beendigung des Vertrags
 

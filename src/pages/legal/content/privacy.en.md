@@ -1,6 +1,6 @@
 # Privacy Policy
 
-Version 0.1 (draft) · Last updated: [DATE OF PUBLICATION]
+Version 0.2 (draft) · Last updated: [DATE OF PUBLICATION]
 
 This policy explains which personal data Messenger processes, why, on which legal basis, for how long, and
 what rights you have. It applies to the Messenger web app, the installed app and the help site.
@@ -108,10 +108,23 @@ password or tokens. Legal basis: (b).
 
 | Data | Purpose | Legal basis |
 |---|---|---|
-| Reports you send or receive: reason, optional note, a snapshot of the reported profile, how the two accounts are connected | Handle reports | (c) Digital Services Act, (f) safety of users |
-| Account status, its history, appeals | Apply restrictions after reports | (c), (f) |
+| Reports about accounts that you send or receive: reason, optional note, a snapshot of the reported profile, how the two accounts are connected | Handle reports | (c) Digital Services Act, (f) safety of users |
+| Reports about a message or a group: reason, optional note, and a **copy** of the reported message with up to 5 messages before and after it as the reporter sees the chat (sender name and username, text or caption, file names, time); for a group report, the group's name, description and picture | Let a person check the report | (c), (f) |
+| Account status, its history, appeals, requests for a review by a person (with your text and your status at that time) | Apply restrictions after reports; review them | (c), (f) |
+| Decisions of the moderation team: status, reason and the text shown to you; messages removed with their reason; hidden packs | Act on reports and tell you why | (c), (f) |
+| Report outcomes: whether action was taken on a report you made | Tell reporters the result, as the Digital Services Act requires | (c) |
+| Reports of illegal content sent by email: name and email address of the sender, the content, where it is, why it is illegal | Handle the report and tell the sender the result | (c) |
 
-The reported person never learns who reported them. Section 9 explains the automatic decisions.
+The reported person never learns who reported them. A report outcome never says what action was taken.
+
+**Who sees this data.** The operator and the moderators appointed by the operator see it in a separate moderation console on
+our server, after signing in with a password and a second factor. Moderators are bound to confidentiality.
+They see accounts, reports and the copies attached to message reports, **never your chats**: messages are not
+read or scanned for moderation. Every time a moderator opens an account, a list or a report, the console
+records who looked at what (section 5). Decisions appear in the app as made by "Messenger moderation", never
+with a moderator's name.
+
+Section 9 explains the automatic decisions and how a person reviews them.
 
 ### 3.9 Server logs and backups
 
@@ -146,8 +159,12 @@ Anyone with access to your unlocked device can see this data.
 | Signed-in sessions | Until signed out or expired, plus 30 days |
 | Security log | As long as your account exists |
 | Rate-limit data | 1 minute to 1 hour |
-| Reports | 180 days |
-| Account status and history | As long as your account exists |
+| Reports about accounts | 180 days |
+| Reports about messages and groups, with their copies | 6 months, also after the chat or message is deleted |
+| Report outcomes | 90 days |
+| Account status and history, review requests | As long as your account exists |
+| Moderation cases and decisions, email reports of illegal content | [TO DECIDE: no automatic deletion yet; planned 2 years] |
+| Moderation access log (which moderator viewed which account) | 2 years |
 | Link preview cache | 24 hours (pictures 7 days) |
 | Database backups | Until replaced, after 10 later updates of the service |
 | Server logs | [TO DECIDE: rotation period] |
@@ -161,6 +178,7 @@ Anyone with access to your unlocked device can see this data.
 - **Clear history for everyone** and **delete chat for both** remove the messages, reactions and files.
 - **Delete account** removes your account, profile, settings, sessions, security log, reports, push
   subscriptions, recovery email, passkeys, connected accounts and your direct chats (for both people).
+  Reports you made about messages or groups stay without your name until their 6 months are over.
   **These stay:** messages, reactions and files you sent in groups that still exist (shown as "Deleted
   account"), copies of your messages that others forwarded, custom emoji packs you made (without your name),
   sticker pictures, and call records for up to 90 days.
@@ -191,12 +209,15 @@ standard contractual clauses (Art. 46 (2)(c) GDPR). You can ask us for a copy of
 
 When people report an account, Messenger calculates a score from the reports and changes the account's status
 automatically: warned, limited, restricted or suspended. Each level blocks certain actions; the **Account
-status** page shows which ones and why. No person reviews these decisions, and appeals in the app are also
-handled automatically.
+status** page shows which ones and why. Appeals in the app are handled automatically.
+
+A person on the moderation team checks every automatic **restricted** or **suspended** status and every pack
+hidden after reports, and can confirm, lower or lift it. The other levels are reviewed when you ask.
 
 These decisions can affect you significantly. You have the right to ask for a review by a person, to state
-your point of view and to contest the decision (Art. 22 (3) GDPR). Write to myron.ilchenko@gmail.com. Details
-are in the [Community Guidelines and Moderation](#/guidelines).
+your point of view and to contest the decision (Art. 22 (3) GDPR). Use **Request a review by a person** on the **Account
+status** page, or write to myron.ilchenko@gmail.com. Details are in the
+[Community Guidelines and Moderation](#/guidelines).
 
 ## 10. Your rights
 

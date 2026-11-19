@@ -1,6 +1,6 @@
 # Datenschutzerklärung
 
-Version 0.1 (Entwurf) · Zuletzt aktualisiert: [DATE OF PUBLICATION]
+Version 0.2 (Entwurf) · Zuletzt aktualisiert: [DATE OF PUBLICATION]
 
 Diese Erklärung erläutert, welche personenbezogenen Daten Messenger verarbeitet, warum, auf welcher Rechtsgrundlage,
 wie lange und welche Rechte du hast. Sie gilt für die Messenger-Web-App, die installierte App und die Hilfeseite.
@@ -113,10 +113,25 @@ Kontonamen und den Link, niemals dein Passwort oder deine Tokens. Rechtsgrundlag
 
 | Daten | Zweck | Rechtsgrundlage |
 |---|---|---|
-| Meldungen, die du sendest oder die über dich eingehen: Grund, optionale Anmerkung, eine Momentaufnahme des gemeldeten Profils, wie die beiden Konten miteinander verbunden sind | Meldungen bearbeiten | (c) Digital Services Act, (f) Sicherheit der Nutzer |
-| Kontostatus, sein Verlauf, Einsprüche | Einschränkungen nach Meldungen anwenden | (c), (f) |
+| Meldungen zu Konten, die du sendest oder die über dich eingehen: Grund, optionale Anmerkung, eine Momentaufnahme des gemeldeten Profils, wie die beiden Konten miteinander verbunden sind | Meldungen bearbeiten | (c) Digital Services Act, (f) Sicherheit der Nutzer |
+| Meldungen zu einer Nachricht oder einer Gruppe: Grund, optionale Anmerkung und eine **Kopie** der gemeldeten Nachricht mit bis zu 5 Nachrichten davor und danach, so wie die meldende Person den Chat sieht (Name und Benutzername des Absenders, Text oder Bildunterschrift, Dateinamen, Zeitpunkt); bei der Meldung einer Gruppe Name, Beschreibung und Bild der Gruppe | Eine Person die Meldung prüfen lassen | (c), (f) |
+| Kontostatus, sein Verlauf, Einsprüche, Anträge auf Überprüfung durch eine Person (mit deinem Text und deinem damaligen Status) | Einschränkungen nach Meldungen anwenden; sie überprüfen | (c), (f) |
+| Entscheidungen des Moderationsteams: Status, Begründung und der dir angezeigte Text; entfernte Nachrichten mit ihrer Begründung; ausgeblendete Pakete | Auf Meldungen reagieren und dir die Gründe mitteilen | (c), (f) |
+| Ergebnisse von Meldungen: ob aufgrund einer Meldung, die du gesendet hast, etwas unternommen wurde | Meldenden Personen das Ergebnis mitteilen, wie es der Digital Services Act verlangt | (c) |
+| Meldungen rechtswidriger Inhalte per E-Mail: Name und E-Mail-Adresse der meldenden Person, der Inhalt, wo er sich befindet, warum er rechtswidrig ist | Die Meldung bearbeiten und der meldenden Person das Ergebnis mitteilen | (c) |
 
-Die gemeldete Person erfährt nie, wer sie gemeldet hat. Abschnitt 9 erläutert die automatisierten Entscheidungen.
+Die gemeldete Person erfährt nie, wer sie gemeldet hat. Das Ergebnis einer Meldung sagt nie, welche Maßnahme ergriffen
+wurde.
+
+**Wer diese Daten sieht.** Der Betreiber und die vom Betreiber benannten Moderatoren sehen sie in einer separaten
+Moderationskonsole auf unserem Server, nach der Anmeldung mit einem Passwort und einem zweiten Faktor. Die Moderatoren
+sind zur Vertraulichkeit verpflichtet. Sie sehen Konten, Meldungen und die Kopien, die zu Meldungen von Nachrichten
+gehören, **nie deine Chats**: Nachrichten werden für die Moderation weder gelesen noch gescannt. Jedes Mal, wenn
+jemand aus dem Moderationsteam ein Konto, eine Liste oder eine Meldung öffnet, protokolliert die Konsole, wer was
+angesehen hat (Abschnitt 5). Entscheidungen erscheinen in der App als Entscheidungen der „Messenger-Moderation“, nie
+mit dem Namen einer Person aus dem Moderationsteam.
+
+Abschnitt 9 erläutert die automatisierten Entscheidungen und wie eine Person sie überprüft.
 
 ### 3.9 Serverprotokolle und Sicherungen
 
@@ -152,8 +167,12 @@ löschst, werden diese Daten entfernt. Wer Zugriff auf dein entsperrtes Gerät h
 | Angemeldete Sitzungen | Bis zur Abmeldung oder zum Ablauf, plus 30 Tage |
 | Sicherheitsprotokoll | Solange dein Konto besteht |
 | Daten zur Ratenbegrenzung | 1 Minute bis 1 Stunde |
-| Meldungen | 180 Tage |
-| Kontostatus und Verlauf | Solange dein Konto besteht |
+| Meldungen zu Konten | 180 Tage |
+| Meldungen zu Nachrichten und Gruppen, mit ihren Kopien | 6 Monate, auch nachdem der Chat oder die Nachricht gelöscht wurde |
+| Ergebnisse von Meldungen | 90 Tage |
+| Kontostatus und Verlauf, Anträge auf Überprüfung | Solange dein Konto besteht |
+| Moderationsfälle und -entscheidungen, Meldungen rechtswidriger Inhalte per E-Mail | [TO DECIDE: no automatic deletion yet; planned 2 years] |
+| Zugriffsprotokoll der Moderation (wer aus dem Moderationsteam welches Konto angesehen hat) | 2 Jahre |
 | Cache der Linkvorschauen | 24 Stunden (Bilder 7 Tage) |
 | Datenbanksicherungen | Bis sie ersetzt werden, nach 10 weiteren Aktualisierungen des Dienstes |
 | Serverprotokolle | [TO DECIDE: rotation period] |
@@ -167,9 +186,11 @@ löschst, werden diese Daten entfernt. Wer Zugriff auf dein entsperrtes Gerät h
 - **Verlauf für alle leeren** und **Chat für beide löschen** entfernen die Nachrichten, Reaktionen und Dateien.
 - **Konto löschen** entfernt dein Konto, dein Profil, deine Einstellungen, Sitzungen, dein Sicherheitsprotokoll,
   Meldungen, Push-Abonnements, deine Wiederherstellungs-E-Mail, Passkeys, verknüpften Konten und deine Direktchats
-  (für beide Personen). **Erhalten bleiben:** Nachrichten, Reaktionen und Dateien, die du in noch bestehenden
-  Gruppen gesendet hast (angezeigt als „Gelöschtes Konto“), Kopien deiner Nachrichten, die andere weitergeleitet
-  haben, von dir erstellte eigene Emoji-Pakete (ohne deinen Namen), Stickerbilder und Anrufdaten für bis zu 90 Tage.
+  (für beide Personen). Meldungen, die du zu Nachrichten oder Gruppen gesendet hast, bleiben ohne deinen Namen
+  erhalten, bis ihre 6 Monate abgelaufen sind. **Erhalten bleiben:** Nachrichten, Reaktionen und Dateien, die du
+  in noch bestehenden Gruppen gesendet hast (angezeigt als „Gelöschtes Konto“), Kopien deiner Nachrichten, die
+  andere weitergeleitet haben, von dir erstellte eigene Emoji-Pakete (ohne deinen Namen), Stickerbilder und
+  Anrufdaten für bis zu 90 Tage.
 - Gelöschte Daten können in Sicherungen verbleiben, bis diese ersetzt werden (Abschnitt 5), und etwa 10 Tage lang
   in der internen Bereinigung der Datenbank.
 
@@ -198,12 +219,16 @@ uns eine Kopie der geeigneten Garantien verlangen.
 
 Wenn Personen ein Konto melden, berechnet Messenger aus den Meldungen einen Punktwert und ändert den Status des
 Kontos automatisch: verwarnt, begrenzt, eingeschränkt oder gesperrt. Jede Stufe sperrt bestimmte Aktionen; die Seite
-**Kontostatus** zeigt, welche und warum. Keine Person prüft diese Entscheidungen, und Einsprüche in der App werden
-ebenfalls automatisch bearbeitet.
+**Kontostatus** zeigt, welche und warum. Einsprüche in der App werden automatisch bearbeitet.
+
+Eine Person aus dem Moderationsteam prüft jeden automatischen Status **Eingeschränkt** oder **Gesperrt** und jedes
+nach Meldungen ausgeblendete Paket und kann die Entscheidung bestätigen, herabstufen oder aufheben. Die anderen
+Stufen werden überprüft, wenn du es verlangst.
 
 Diese Entscheidungen können dich erheblich beeinträchtigen. Du hast das Recht, eine Überprüfung durch eine Person zu
-verlangen, deinen Standpunkt darzulegen und die Entscheidung anzufechten (Art. 22 Abs. 3 DSGVO). Schreibe an
-myron.ilchenko@gmail.com. Einzelheiten stehen in den [Community-Richtlinien und Moderation](#/guidelines).
+verlangen, deinen Standpunkt darzulegen und die Entscheidung anzufechten (Art. 22 Abs. 3 DSGVO). Nutze
+**Prüfung durch einen Menschen anfordern** auf der Seite **Kontostatus** oder schreibe an myron.ilchenko@gmail.com.
+Einzelheiten stehen in den [Community-Richtlinien und Moderation](#/guidelines).
 
 ## 10. Deine Rechte
 
