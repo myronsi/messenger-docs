@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { ThemeProvider } from 'next-themes';
 import { HelpPage } from '@/pages/help';
 import { LegalPage, preferredLanguage, saveLanguage } from '@/pages/legal';
-import { appUrlFor } from '@/shared/config/appUrl';
+import { appUrlFor, statusUrlFor } from '@/shared/config/appUrl';
 import { routeHref, useRoute, type Language } from '@/shared/lib/route';
+import { StatusBanner } from '@/widgets/status-banner';
 
 const App = () => {
   const { route, go } = useRoute();
@@ -18,6 +19,7 @@ const App = () => {
 
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+      <StatusBanner url={statusUrlFor(window.location.hostname)} />
       {route.page === 'legal' ? (
         <LegalPage key={route.doc} doc={route.doc} lang={route.lang ?? savedLanguage} appUrl={appUrl} onLanguageChange={changeLanguage} />
       ) : (
