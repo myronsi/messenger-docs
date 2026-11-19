@@ -163,7 +163,7 @@ Anyone with access to your unlocked device can see this data.
 | Reports about messages and groups, with their copies | 6 months, also after the chat or message is deleted |
 | Report outcomes | 90 days |
 | Account status and history, review requests | As long as your account exists |
-| Moderation cases and decisions, email reports of illegal content | [TO DECIDE: no automatic deletion yet; planned 2 years] |
+| Moderation cases and decisions, email reports of illegal content | 2 years after the decision; open cases stay until decided |
 | Moderation access log (which moderator viewed which account) | 2 years |
 | Link preview cache | 24 hours (pictures 7 days) |
 | Database backups | Until replaced, after 10 later updates of the service |
