@@ -1,6 +1,6 @@
 # Datenschutzerklärung
 
-Version 0.2 (Entwurf) · Zuletzt aktualisiert: [DATE OF PUBLICATION]
+Version 0.2 (Entwurf) · Zuletzt aktualisiert: 2026-11-19
 
 Diese Erklärung erläutert, welche personenbezogenen Daten Messenger verarbeitet, warum, auf welcher Rechtsgrundlage,
 wie lange und welche Rechte du hast. Sie gilt für die Messenger-Web-App, die installierte App und die Hilfeseite.

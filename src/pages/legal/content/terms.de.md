@@ -1,6 +1,6 @@
 # Nutzungsbedingungen
 
-Version 0.2 (Entwurf) · Zuletzt aktualisiert: [DATE OF PUBLICATION]
+Version 0.2 (Entwurf) · Zuletzt aktualisiert: 2026-11-19
 
 ## 1. Wer wir sind und was diese Bedingungen regeln
 

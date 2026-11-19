@@ -1,6 +1,6 @@
 # Community Guidelines and Moderation
 
-Version 0.2 (draft) · Last updated: [DATE OF PUBLICATION]
+Version 0.2 (draft) · Last updated: 2026-11-19
 
 Messenger should be a place where people can talk without fear. These guidelines are part of the
 [Terms of Use](#/terms). They also explain, as the EU Digital Services Act requires, how reports and moderation

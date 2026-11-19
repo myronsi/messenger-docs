@@ -1,6 +1,6 @@
 # Política de privacidad
 
-Versión 0.2 (borrador) · Última actualización: [DATE OF PUBLICATION]
+Versión 0.2 (borrador) · Última actualización: 2026-11-19
 
 Esta es una traducción de cortesía. La versión alemana es la jurídicamente vinculante.
 

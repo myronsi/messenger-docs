@@ -1,6 +1,6 @@
 # Privacy Policy
 
-Version 0.2 (draft) · Last updated: [DATE OF PUBLICATION]
+Version 0.2 (draft) · Last updated: 2026-11-19
 
 This policy explains which personal data Messenger processes, why, on which legal basis, for how long, and
 what rights you have. It applies to the Messenger web app, the installed app and the help site.
