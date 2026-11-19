@@ -153,7 +153,7 @@ Anyone with access to your unlocked device can see this data.
 
 | Data | Kept |
 |---|---|
-| Account, profile, settings | Until you delete them or your account; an account nobody used for 2 years is deleted (section 6) |
+| Account, profile, settings | Until you delete them or your account; an account nobody used for 1 year is deleted (section 6) |
 | Messages, files, reactions | **No time limit**, until deleted as described in section 6 |
 | Messages waiting to be resent | Until sent or discarded |
 | Unused uploads | 24 hours |
@@ -185,7 +185,7 @@ Anyone with access to your unlocked device can see this data.
   **These stay:** messages, reactions and files you sent in groups that still exist (shown as "Deleted
   account"), copies of your messages that others forwarded, custom emoji packs you made (without your name),
   sticker pictures, and call records for up to 90 days.
-- **Inactive accounts:** if nobody signs in to or uses an account for 2 years, we delete it exactly like
+- **Inactive accounts:** if nobody signs in to or uses an account for 1 year, we delete it exactly like
   **Delete account**. If the account has a confirmed recovery email, we write to it 30 days before; signing in
   before that date keeps the account.
 - Deleted data can remain in backups until they are replaced (section 5) and in the database's internal

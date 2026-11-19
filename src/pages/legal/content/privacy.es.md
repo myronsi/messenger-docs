@@ -158,7 +158,7 @@ se eliminan. Cualquier persona con acceso a tu dispositivo desbloqueado puede ve
 
 | Datos | Plazo de conservación |
 |---|---|
-| Cuenta, perfil, ajustes | Hasta que los elimines o elimines tu cuenta; una cuenta que nadie ha usado durante 2 años se elimina (sección 6) |
+| Cuenta, perfil, ajustes | Hasta que los elimines o elimines tu cuenta; una cuenta que nadie ha usado durante 1 año se elimina (sección 6) |
 | Mensajes, archivos, reacciones | **Sin límite de tiempo**, hasta que se eliminen como se describe en la sección 6 |
 | Mensajes en espera de un nuevo intento de envío | Hasta que se envíen o se descarten |
 | Archivos subidos sin usar | 24 horas |
@@ -191,7 +191,7 @@ se eliminan. Cualquier persona con acceso a tu dispositivo desbloqueado puede ve
   **Se conservan:** los mensajes, reacciones y archivos que enviaste en grupos que siguen existiendo (se muestran como
   "Cuenta eliminada"), las copias de tus mensajes que otras personas reenviaron, los paquetes de emojis personalizados que
   creaste (sin tu nombre), las imágenes de los stickers y los registros de llamadas durante un máximo de 90 días.
-- **Cuentas inactivas:** si nadie inicia sesión en una cuenta ni la usa durante 2 años, la eliminamos exactamente igual
+- **Cuentas inactivas:** si nadie inicia sesión en una cuenta ni la usa durante 1 año, la eliminamos exactamente igual
   que **Eliminar cuenta**. Si la cuenta tiene un correo electrónico de recuperación confirmado, te escribimos a esa
   dirección 30 días antes; si inicias sesión antes de esa fecha, la cuenta se conserva.
 - Los datos eliminados pueden permanecer en las copias de seguridad hasta que se sustituyan (sección 5) y en la limpieza

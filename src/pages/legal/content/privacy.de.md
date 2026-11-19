@@ -160,7 +160,7 @@ löschst, werden diese Daten entfernt. Wer Zugriff auf dein entsperrtes Gerät h
 
 | Daten | Speicherdauer |
 |---|---|
-| Konto, Profil, Einstellungen | Bis du sie oder dein Konto löschst; ein Konto, das 2 Jahre lang niemand genutzt hat, wird gelöscht (Abschnitt 6) |
+| Konto, Profil, Einstellungen | Bis du sie oder dein Konto löschst; ein Konto, das 1 Jahr lang niemand genutzt hat, wird gelöscht (Abschnitt 6) |
 | Nachrichten, Dateien, Reaktionen | **Keine zeitliche Begrenzung**, bis zur Löschung wie in Abschnitt 6 beschrieben |
 | Nachrichten, die auf einen erneuten Sendeversuch warten | Bis sie gesendet oder verworfen werden |
 | Nicht verwendete Uploads | 24 Stunden |
@@ -193,7 +193,7 @@ löschst, werden diese Daten entfernt. Wer Zugriff auf dein entsperrtes Gerät h
   in noch bestehenden Gruppen gesendet hast (angezeigt als „Gelöschtes Konto“), Kopien deiner Nachrichten, die
   andere weitergeleitet haben, von dir erstellte eigene Emoji-Pakete (ohne deinen Namen), Stickerbilder und
   Anrufdaten für bis zu 90 Tage.
-- **Inaktive Konten:** Wenn sich 2 Jahre lang niemand bei einem Konto anmeldet oder es nutzt, löschen wir es genau so
+- **Inaktive Konten:** Wenn sich 1 Jahr lang niemand bei einem Konto anmeldet oder es nutzt, löschen wir es genau so
   wie mit **Konto löschen**. Wenn das Konto eine bestätigte Wiederherstellungs-E-Mail hat, schreiben wir 30 Tage
   vorher an diese Adresse; wenn du dich vor diesem Datum anmeldest, bleibt das Konto bestehen.
 - Gelöschte Daten können in Sicherungen verbleiben, bis diese ersetzt werden (Abschnitt 5), und etwa 10 Tage lang
