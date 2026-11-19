@@ -168,7 +168,7 @@ se eliminan. Cualquier persona con acceso a tu dispositivo desbloqueado puede ve
 | Denuncias sobre mensajes y grupos, con sus copias | 6 meses, también después de que se elimine el chat o el mensaje |
 | Resultados de las denuncias | 90 días |
 | Estado de la cuenta e historial, solicitudes de revisión | Mientras exista tu cuenta |
-| Casos y decisiones de moderación, denuncias de contenido ilegal por correo electrónico | [TO DECIDE: no automatic deletion yet; planned 2 years] |
+| Casos y decisiones de moderación, denuncias de contenido ilegal por correo electrónico | 2 años después de la decisión; los casos abiertos se conservan hasta que se decidan |
 | Registro de accesos de moderación (qué moderador consultó qué cuenta) | 2 años |
 | Caché de vistas previas de enlaces | 24 horas (imágenes, 7 días) |
 | Copias de seguridad de la base de datos | Hasta que se sustituyan, después de 10 actualizaciones posteriores del servicio |

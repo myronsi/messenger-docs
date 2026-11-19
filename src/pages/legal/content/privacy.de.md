@@ -171,7 +171,7 @@ löschst, werden diese Daten entfernt. Wer Zugriff auf dein entsperrtes Gerät h
 | Meldungen zu Nachrichten und Gruppen, mit ihren Kopien | 6 Monate, auch nachdem der Chat oder die Nachricht gelöscht wurde |
 | Ergebnisse von Meldungen | 90 Tage |
 | Kontostatus und Verlauf, Anträge auf Überprüfung | Solange dein Konto besteht |
-| Moderationsfälle und -entscheidungen, Meldungen rechtswidriger Inhalte per E-Mail | [TO DECIDE: no automatic deletion yet; planned 2 years] |
+| Moderationsfälle und -entscheidungen, Meldungen rechtswidriger Inhalte per E-Mail | 2 Jahre nach der Entscheidung; offene Fälle bleiben bis zur Entscheidung |
 | Zugriffsprotokoll der Moderation (wer aus dem Moderationsteam welches Konto angesehen hat) | 2 Jahre |
 | Cache der Linkvorschauen | 24 Stunden (Bilder 7 Tage) |
 | Datenbanksicherungen | Bis sie ersetzt werden, nach 10 weiteren Aktualisierungen des Dienstes |
