@@ -130,8 +130,10 @@ Section 9 explains the automatic decisions and how a person reviews them.
 
 Server logs record technical data about requests (method, route, status, duration, a request id) and, for
 errors, internal ids such as your user id. They do not contain IP addresses or message text. When calls are
-enabled, the media server logs call room names, participant ids and IP addresses. Before each update of the
-service, a backup of the main database is made. Legal basis: (f), operating and securing the service.
+enabled, the media server logs call room names, participant ids and IP addresses. Our web server logs each
+request with a **shortened** IP address (the last part removed), the time, the address requested, the status and
+the browser. Before each update of the service, a backup of the main database is made. Legal basis: (f),
+operating and securing the service.
 
 ## 4. Data stored on your device
 
@@ -151,13 +153,13 @@ Anyone with access to your unlocked device can see this data.
 
 | Data | Kept |
 |---|---|
-| Account, profile, settings | Until you delete them or your account |
+| Account, profile, settings | Until you delete them or your account; an account nobody used for 1 year is deleted (section 6) |
 | Messages, files, reactions | **No time limit**, until deleted as described in section 6 |
 | Messages waiting to be resent | Until sent or discarded |
 | Unused uploads | 24 hours |
 | Call records | 90 days after the call |
 | Signed-in sessions | Until signed out or expired, plus 30 days |
-| Security log | As long as your account exists |
+| Security log | 1 year |
 | Rate-limit data | 1 minute to 1 hour |
 | Reports about accounts | 180 days |
 | Reports about messages and groups, with their copies | 6 months, also after the chat or message is deleted |
@@ -167,7 +169,8 @@ Anyone with access to your unlocked device can see this data.
 | Moderation access log (which moderator viewed which account) | 2 years |
 | Link preview cache | 24 hours (pictures 7 days) |
 | Database backups | Until replaced, after 10 later updates of the service |
-| Server logs | [TO DECIDE: rotation period] |
+| Server logs, media server logs | Up to 30 MB per service, then overwritten (usually a few days) |
+| Web server logs (shortened IP addresses) | 14 days |
 
 ## 6. What deleting does
 
@@ -182,6 +185,9 @@ Anyone with access to your unlocked device can see this data.
   **These stay:** messages, reactions and files you sent in groups that still exist (shown as "Deleted
   account"), copies of your messages that others forwarded, custom emoji packs you made (without your name),
   sticker pictures, and call records for up to 90 days.
+- **Inactive accounts:** if nobody signs in to or uses an account for 1 year, we delete it exactly like
+  **Delete account**. If the account has a confirmed recovery email, we write to it 30 days before; signing in
+  before that date keeps the account.
 - Deleted data can remain in backups until they are replaced (section 5) and in the database's internal
   cleanup for about 10 days.
 
