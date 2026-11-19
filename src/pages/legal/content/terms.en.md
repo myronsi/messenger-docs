@@ -1,6 +1,6 @@
 # Terms of Use
 
-Version 0.2 (draft) · Last updated: [DATE OF PUBLICATION]
+Version 0.2 (draft) · Last updated: 2026-11-19
 
 ## 1. Who we are and what these terms cover
 

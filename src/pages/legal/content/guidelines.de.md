@@ -1,6 +1,6 @@
 # Community-Richtlinien und Moderation
 
-Version 0.2 (Entwurf) · Zuletzt aktualisiert: [DATE OF PUBLICATION]
+Version 0.2 (Entwurf) · Zuletzt aktualisiert: 2026-11-19
 
 Messenger soll ein Ort sein, an dem Menschen ohne Angst miteinander sprechen können. Diese Richtlinien sind Teil der
 [Nutzungsbedingungen](#/terms). Sie erklären außerdem, wie es der Digital Services Act der EU verlangt, wie Meldungen
