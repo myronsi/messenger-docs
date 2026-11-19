@@ -1,6 +1,6 @@
 # Terms of Use
 
-Version 0.1 (draft) · Last updated: [DATE OF PUBLICATION]
+Version 0.2 (draft) · Last updated: [DATE OF PUBLICATION]
 
 ## 1. Who we are and what these terms cover
 
@@ -56,14 +56,16 @@ You must follow the law and our [Community Guidelines](#/guidelines). In particu
 
 ## 6. Reports, moderation and restrictions
 
-1. Anyone can report an account, a sticker pack or an emoji pack in the app. You can also report illegal
-   content to myron.ilchenko@gmail.com (see the Community Guidelines for what a report should contain).
+1. Anyone can report an account, a message, a group, a sticker pack or an emoji pack in the app. You can also
+   report illegal content to myron.ilchenko@gmail.com (see the Community Guidelines for what a report should
+   contain).
 2. Reports change an account's status automatically. Depending on the status, certain actions are restricted,
    up to a read-only account. The Account status page shows your status, the restrictions and the reason.
-3. We may also remove content, restrict or suspend an account, or delete it, if it violates the law or these
-   terms. We decide with care and take into account the rights and interests of everyone involved.
-4. You can appeal in the app, and you can ask for a review by a person at myron.ilchenko@gmail.com. We will
-   explain our decision.
+3. Our moderation team reviews reports and automatic decisions. We may remove content, hide a pack, restrict
+   or suspend an account, or delete it, if it violates the law or these terms. We decide with care and take
+   into account the rights and interests of everyone involved.
+4. You can appeal in the app, and you can ask for a review by a person on the Account status page or at
+   myron.ilchenko@gmail.com. We will explain our decision.
 
 ## 7. Ending the contract
 

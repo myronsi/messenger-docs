@@ -1,6 +1,6 @@
 # Normas de la comunidad y moderación
 
-Versión 0.1 (borrador) · Última actualización: [DATE OF PUBLICATION]
+Versión 0.2 (borrador) · Última actualización: [DATE OF PUBLICATION]
 
 Esta es una traducción de cortesía. La versión alemana es la jurídicamente vinculante.
 
@@ -28,6 +28,12 @@ funcionan las denuncias y la moderación.
 - **En la aplicación:** abre el perfil de la persona y elige **Denunciar**, o elige **Denunciar paquete** en un paquete de
   stickers o de emojis. Puedes añadir detalles (hasta 500 caracteres) y bloquear a la persona al mismo tiempo. La persona
   denunciada nunca sabe quién la ha denunciado. Puedes enviar hasta 20 denuncias al día.
+- **Un mensaje o un grupo:** elige **Denunciar** en el menú del mensaje, o **Denunciar grupo** en la información del
+  grupo. Una denuncia de un mensaje conserva una copia del mensaje y de hasta 5 mensajes anteriores y posteriores, tal
+  como los ves, para que un moderador pueda entender el contexto. Una denuncia de un grupo conserva el nombre, la
+  descripción y la foto del grupo. Los moderadores solo ven esta copia, nunca el resto del chat. La copia se conserva
+  durante 6 meses.
+- Tras una decisión, la aplicación te indica si se tomaron medidas sobre tu denuncia, pero no cuáles.
 - **Por correo electrónico**, especialmente en caso de contenido ilegal o si no eres usuario de Messenger:
   myron.ilchenko@gmail.com. Incluye lo siguiente:
   1. qué contenido es y dónde se encuentra (nombre de usuario, grupo, enlace del paquete y la hora del mensaje),
@@ -61,31 +67,51 @@ Según la puntuación, el estado de la cuenta cambia **automáticamente**:
 El estado vuelve a bajar por sí solo: a medida que las denuncias envejecen, y un nivel tras 30 días sin denuncias nuevas
 ni cambios.
 
-**Ninguna persona revisa estas decisiones automáticas.** Los mensajes no se leen ni se analizan con fines de moderación.
+Los mensajes no se leen ni se analizan con fines de moderación.
 
-### 3.2 Qué se te comunica
+### 3.2 Revisión por una persona
+
+Un pequeño equipo de moderación, designado por el operador y sujeto a confidencialidad, trabaja en una consola de
+moderación independiente. Un moderador:
+
+- revisa cada cuenta **restringida** o **suspendida** automáticamente y cada paquete ocultado tras denuncias, y lo confirma,
+  lo rebaja o lo levanta, normalmente en un plazo de 72 horas;
+- revisa las denuncias sobre mensajes y grupos y puede eliminar un mensaje que infrinja estas normas;
+- puede fijar el estado de una cuenta indicando un motivo, desestimar las denuncias infundadas, ocultar o restaurar un
+  paquete y, en casos graves, eliminar una cuenta.
+
+Un estado fijado por una persona no baja por sí solo con el tiempo y no se puede apelar automáticamente en la aplicación;
+en su lugar, solicita una revisión (sección 3.4). Las denuncias nuevas posteriores a la decisión todavía pueden subirlo.
+
+### 3.3 Qué se te comunica
 
 Cuando cambia tu estado, la aplicación muestra un aviso. La página **Estado de la cuenta** de tu perfil muestra tu estado
-y desde cuándo, exactamente qué acciones están restringidas y cuándo es posible apelar.
+y desde cuándo, exactamente qué acciones están restringidas y cuándo es posible apelar. Una decisión tomada por una
+persona se marca como "Revisado por una persona" y muestra el motivo y una explicación de "Moderación de Messenger",
+nunca el nombre de un moderador. Un mensaje eliminado por un moderador aparece como "Eliminado por la moderación" para
+todas las personas del chat, y su remitente ve el motivo.
 
-### 3.3 Apelaciones y revisión por parte de una persona
+### 3.4 Apelaciones y solicitudes de revisión
 
-- **En la aplicación:** puedes apelar una vez cada 30 días. Tu estado baja entonces un nivel de inmediato durante un
-  periodo de prueba de 14 días. Si no llega ninguna denuncia nueva durante el periodo de prueba, se mantiene el nivel más
-  bajo. Una denuncia nueva pone fin al periodo de prueba, restablece el estado anterior y bloquea las apelaciones durante
-  90 días.
-- **Por parte de una persona:** siempre puedes solicitar la revisión de una decisión automática escribiendo a
-  myron.ilchenko@gmail.com con tu nombre de usuario y el motivo por el que crees que la decisión es errónea. Una persona
-  examina el caso, puede levantar o modificar la restricción y te explica el resultado.
+- **Apelación en la aplicación:** puedes apelar un estado automático una vez cada 30 días. Tu estado baja entonces un
+  nivel de inmediato durante un periodo de prueba de 14 días. Si no llega ninguna denuncia nueva durante el periodo de
+  prueba, se mantiene el nivel más bajo. Una denuncia nueva pone fin al periodo de prueba, restablece el estado anterior y
+  bloquea las apelaciones durante 90 días.
+- **Solicitar una revisión por una persona:** en la página **Estado de la cuenta**, elige **Pedir una revisión por una
+  persona** y explica en hasta 500 caracteres por qué crees que la decisión es errónea. Puedes tener una sola solicitud
+  abierta a la vez y enviar hasta 3 en 30 días. Un moderador la examina, puede levantar o modificar el estado, y el
+  resultado aparece en la página Estado de la cuenta. También puedes escribir a myron.ilchenko@gmail.com indicando tu
+  nombre de usuario.
 - También puedes acudir a los tribunales y, en la UE, puedes dirigirte a un órgano certificado de resolución extrajudicial
   de litigios.
 
-### 3.4 Medidas sobre contenido denunciado por correo electrónico
+### 3.5 Medidas sobre contenido denunciado por correo electrónico
 
 En el caso de las denuncias por correo electrónico, examinamos el contenido y el contexto, y decidimos de manera oportuna,
-diligente y objetiva. Podemos eliminar contenido, ocultar un paquete, restringir, suspender o eliminar una cuenta y, en
-casos graves, informar a las autoridades, en particular cuando exista una amenaza para la vida o la seguridad de alguien.
-Comunicamos a la persona afectada qué hemos hecho, por qué y cómo puede impugnarlo, salvo que la ley lo prohíba.
+diligente y objetiva, normalmente en un plazo de 72 horas. Podemos eliminar contenido, ocultar un paquete, restringir,
+suspender o eliminar una cuenta y, en casos graves, informar a las autoridades, en particular cuando exista una amenaza
+para la vida o la seguridad de alguien. Comunicamos a la persona afectada qué hemos hecho, por qué y cómo puede
+impugnarlo, salvo que la ley lo prohíba, y comunicamos a quien envió la denuncia lo que hemos decidido.
 
 ## 4. Punto de contacto
 

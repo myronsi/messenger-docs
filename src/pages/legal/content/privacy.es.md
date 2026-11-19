@@ -1,6 +1,6 @@
 # Política de privacidad
 
-Versión 0.1 (borrador) · Última actualización: [DATE OF PUBLICATION]
+Versión 0.2 (borrador) · Última actualización: [DATE OF PUBLICATION]
 
 Esta es una traducción de cortesía. La versión alemana es la jurídicamente vinculante.
 
@@ -112,10 +112,23 @@ enlace, nunca tu contraseña ni tus tokens. Base jurídica: (b).
 
 | Datos | Finalidad | Base jurídica |
 |---|---|---|
-| Denuncias que envías o recibes: motivo, nota opcional, una instantánea del perfil denunciado, cómo están relacionadas las dos cuentas | Gestionar las denuncias | (c) Reglamento de Servicios Digitales (DSA), (f) seguridad de los usuarios |
-| Estado de la cuenta, su historial, apelaciones | Aplicar restricciones tras las denuncias | (c), (f) |
+| Denuncias sobre cuentas que envías o recibes: motivo, nota opcional, una instantánea del perfil denunciado, cómo están relacionadas las dos cuentas | Gestionar las denuncias | (c) Reglamento de Servicios Digitales (DSA), (f) seguridad de los usuarios |
+| Denuncias sobre un mensaje o un grupo: motivo, nota opcional y una **copia** del mensaje denunciado con hasta 5 mensajes anteriores y posteriores, tal como la persona que denuncia ve el chat (nombre y nombre de usuario del remitente, texto o leyenda, nombres de archivo, hora); en la denuncia de un grupo, el nombre, la descripción y la foto del grupo | Permitir que una persona examine la denuncia | (c), (f) |
+| Estado de la cuenta, su historial, apelaciones, solicitudes de revisión por una persona (con tu texto y tu estado en ese momento) | Aplicar restricciones tras las denuncias; revisarlas | (c), (f) |
+| Decisiones del equipo de moderación: estado, motivo y el texto que se te muestra; mensajes eliminados con su motivo; paquetes ocultados | Tomar medidas sobre las denuncias y comunicarte el motivo | (c), (f) |
+| Resultados de las denuncias: si se tomaron medidas sobre una denuncia que hiciste | Comunicar el resultado a quienes denuncian, como exige el Reglamento de Servicios Digitales | (c) |
+| Denuncias de contenido ilegal enviadas por correo electrónico: nombre y dirección de correo electrónico del remitente, el contenido, dónde se encuentra, por qué es ilegal | Gestionar la denuncia y comunicar el resultado al remitente | (c) |
 
-La persona denunciada nunca sabe quién la ha denunciado. La sección 9 explica las decisiones automatizadas.
+La persona denunciada nunca sabe quién la ha denunciado. El resultado de una denuncia nunca indica qué medida se tomó.
+
+**Quién ve estos datos.** El operador y los moderadores designados por el operador los ven en una consola de moderación
+independiente en nuestro servidor, tras iniciar sesión con una contraseña y un segundo factor. Los moderadores están
+sujetos a confidencialidad. Ven cuentas, denuncias y las copias adjuntas a las denuncias de mensajes, **nunca tus
+chats**: los mensajes no se leen ni se analizan con fines de moderación. Cada vez que un moderador abre una cuenta, una
+lista o una denuncia, la consola registra quién consultó qué (sección 5). Las decisiones aparecen en la aplicación como
+tomadas por "Moderación de Messenger", nunca con el nombre de un moderador.
+
+La sección 9 explica las decisiones automatizadas y cómo las revisa una persona.
 
 ### 3.9 Registros del servidor y copias de seguridad
 
@@ -151,8 +164,12 @@ se eliminan. Cualquier persona con acceso a tu dispositivo desbloqueado puede ve
 | Sesiones iniciadas | Hasta que se cierre la sesión o caduque, más 30 días |
 | Registro de seguridad | Mientras exista tu cuenta |
 | Datos de límites de frecuencia | De 1 minuto a 1 hora |
-| Denuncias | 180 días |
-| Estado de la cuenta e historial | Mientras exista tu cuenta |
+| Denuncias sobre cuentas | 180 días |
+| Denuncias sobre mensajes y grupos, con sus copias | 6 meses, también después de que se elimine el chat o el mensaje |
+| Resultados de las denuncias | 90 días |
+| Estado de la cuenta e historial, solicitudes de revisión | Mientras exista tu cuenta |
+| Casos y decisiones de moderación, denuncias de contenido ilegal por correo electrónico | [TO DECIDE: no automatic deletion yet; planned 2 years] |
+| Registro de accesos de moderación (qué moderador consultó qué cuenta) | 2 años |
 | Caché de vistas previas de enlaces | 24 horas (imágenes, 7 días) |
 | Copias de seguridad de la base de datos | Hasta que se sustituyan, después de 10 actualizaciones posteriores del servicio |
 | Registros del servidor | [TO DECIDE: rotation period] |
@@ -167,6 +184,7 @@ se eliminan. Cualquier persona con acceso a tu dispositivo desbloqueado puede ve
   archivos.
 - **Eliminar cuenta** elimina tu cuenta, perfil, ajustes, sesiones, registro de seguridad, denuncias, suscripciones push,
   correo electrónico de recuperación, llaves de acceso, cuentas conectadas y tus chats directos (para ambas personas).
+  Las denuncias que hiciste sobre mensajes o grupos se conservan sin tu nombre hasta que terminen sus 6 meses.
   **Se conservan:** los mensajes, reacciones y archivos que enviaste en grupos que siguen existiendo (se muestran como
   "Cuenta eliminada"), las copias de tus mensajes que otras personas reenviaron, los paquetes de emojis personalizados que
   creaste (sin tu nombre), las imágenes de los stickers y los registros de llamadas durante un máximo de 90 días.
@@ -199,12 +217,15 @@ solicitarnos una copia de las garantías.
 
 Cuando alguien denuncia una cuenta, Messenger calcula una puntuación a partir de las denuncias y cambia el estado de la
 cuenta automáticamente: advertida, limitada, restringida o suspendida. Cada nivel bloquea determinadas acciones; la página
-**Estado de la cuenta** muestra cuáles y por qué. Ninguna persona revisa estas decisiones, y las apelaciones en la
-aplicación también se tramitan automáticamente.
+**Estado de la cuenta** muestra cuáles y por qué. Las apelaciones en la aplicación se tramitan automáticamente.
+
+Una persona del equipo de moderación revisa cada cuenta **restringida** o **suspendida** automáticamente y cada paquete
+ocultado tras denuncias, y puede confirmarlo, rebajarlo o levantarlo. Los demás niveles se revisan cuando lo solicitas.
 
 Estas decisiones pueden afectarte de forma significativa. Tienes derecho a obtener la revisión por parte de una persona, a
-expresar tu punto de vista y a impugnar la decisión (art. 22 (3) RGPD). Escribe a myron.ilchenko@gmail.com. Encontrarás
-los detalles en las [Normas de la comunidad y moderación](#/guidelines).
+expresar tu punto de vista y a impugnar la decisión (art. 22 (3) RGPD). Usa **Pedir una revisión por una persona** en la
+página **Estado de la cuenta** o escribe a myron.ilchenko@gmail.com. Encontrarás los detalles en las
+[Normas de la comunidad y moderación](#/guidelines).
 
 ## 10. Tus derechos
 

@@ -1,6 +1,6 @@
 # Condiciones de uso
 
-Versión 0.1 (borrador) · Última actualización: [DATE OF PUBLICATION]
+Versión 0.2 (borrador) · Última actualización: [DATE OF PUBLICATION]
 
 Esta es una traducción de cortesía. La versión alemana es la jurídicamente vinculante.
 
@@ -60,16 +60,17 @@ Debes cumplir la ley y nuestras [Normas de la comunidad](#/guidelines). En parti
 
 ## 6. Denuncias, moderación y restricciones
 
-1. Cualquier persona puede denunciar una cuenta, un paquete de stickers o un paquete de emojis en la aplicación. También
-   puedes denunciar contenido ilegal en myron.ilchenko@gmail.com (consulta en las Normas de la comunidad qué debe
-   contener una denuncia).
+1. Cualquier persona puede denunciar una cuenta, un mensaje, un grupo, un paquete de stickers o un paquete de emojis en
+   la aplicación. También puedes denunciar contenido ilegal en myron.ilchenko@gmail.com (consulta en las Normas de la
+   comunidad qué debe contener una denuncia).
 2. Las denuncias cambian el estado de una cuenta automáticamente. Según el estado, se restringen determinadas acciones,
    hasta llegar a una cuenta de solo lectura. La página Estado de la cuenta muestra tu estado, las restricciones y el
    motivo.
-3. También podemos eliminar contenido, restringir o suspender una cuenta, o eliminarla, si infringe la ley o estas
-   condiciones. Decidimos con diligencia y tenemos en cuenta los derechos e intereses de todas las personas afectadas.
-4. Puedes apelar en la aplicación y puedes solicitar una revisión por parte de una persona en myron.ilchenko@gmail.com.
-   Te explicaremos nuestra decisión.
+3. Nuestro equipo de moderación revisa las denuncias y las decisiones automáticas. Podemos eliminar contenido, ocultar
+   un paquete, restringir o suspender una cuenta, o eliminarla, si infringe la ley o estas condiciones. Decidimos con
+   diligencia y tenemos en cuenta los derechos e intereses de todas las personas afectadas.
+4. Puedes apelar en la aplicación y puedes solicitar una revisión por parte de una persona en la página Estado de la
+   cuenta o en myron.ilchenko@gmail.com. Te explicaremos nuestra decisión.
 
 ## 7. Fin del contrato
 
