@@ -11,6 +11,9 @@ describe('parseRoute', () => {
     ['#/terms/de', { page: 'legal', doc: 'terms', lang: 'de' }],
     ['#/guidelines/xx', { page: 'legal', doc: 'guidelines', lang: null }],
     ['#/imprint', { page: 'legal', doc: 'imprint', lang: null }],
+    ['#/two-years', { page: 'two-years' }],
+    ['#/wrapped', { page: 'wrapped' }],
+    ['#/wrapped/de', { page: 'wrapped' }],
   ])('reads %s', (hash, expected) => {
     expect(parseRoute(hash)).toEqual(expected);
   });
