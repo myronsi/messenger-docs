@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ThemeProvider } from 'next-themes';
+import { AnniversaryPage } from '@/pages/anniversary';
 import { HelpPage } from '@/pages/help';
 import { LegalPage, preferredLanguage, saveLanguage } from '@/pages/legal';
 import { appUrlFor, statusUrlFor } from '@/shared/config/appUrl';
@@ -16,6 +17,8 @@ const App = () => {
     setSavedLanguage(lang);
     if (route.page === 'legal') go(routeHref(route.doc, lang), true);
   };
+
+  if (route.page === 'two-years' || route.page === 'wrapped') return <AnniversaryPage page={route.page} />;
 
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>

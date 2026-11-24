@@ -1,0 +1,874 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Two years of Messenger replayed as a group chat between its repos.">
+<style>html { -webkit-text-size-adjust: 100%; } body { margin: 0; } [hidden] { display: none !important; } img { max-width: 100%; }</style>
+<title>Messenger Turns Two</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #edf1f8;
+  --surface: #ffffff;
+  --surface-2: #f5f7fb;
+  --ink: #0d1526;
+  --muted: #5a6477;
+  --line: #d6dce8;
+  --accent: #2563eb;
+  --accent-ink: #ffffff;
+  --chat-surface: #ffffff;
+  --chat-ink: #0f172a;
+  --chat-muted: #64748b;
+  --chat-line: #e2e8f0;
+  --bubble-in: #f1f5f9;
+  --bubble-in-ink: #0f172a;
+  --bubble-out: #2563eb;
+  --bubble-out-ink: #f8fafc;
+  --pill: #f1f5f9;
+  --pill-ink: #0f172a;
+  --c-back: #2a78d6;
+  --c-front: #eb6834;
+  --c-mod: #16a271;
+  --c-docs: #d99500;
+  --c-bot: #7a8396;
+  --heat0: #e1e6ef;
+  --f-display: 'Unbounded', 'Segoe UI', system-ui, sans-serif;
+  --f-body: 'Onest', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --f-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+  --r: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d121c; --surface: #161d2a; --surface-2: #1c2434; --ink: #edf1f8; --muted: #9aa5b8; --line: #2a3345;
+    --accent: #6ea1f8; --accent-ink: #0b1220; --chat-surface: #10141d; --chat-ink: #f1f5f9; --chat-muted: #9ba6b8; --chat-line: #29303d; --bubble-in: #232b39; --bubble-in-ink: #f1f5f9; --bubble-out: #2959a3; --bubble-out-ink: #ffffff; --pill: #232b39; --pill-ink: #f1f5f9;
+    --c-back: #4a91ea; --c-front: #e8794a; --c-mod: #27bd88; --c-docs: #e5aa1f; --c-bot: #8a93a6; --heat0: #1d2536;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d121c; --surface: #161d2a; --surface-2: #1c2434; --ink: #edf1f8; --muted: #9aa5b8; --line: #2a3345;
+  --accent: #6ea1f8; --accent-ink: #0b1220; --chat-surface: #10141d; --chat-ink: #f1f5f9; --chat-muted: #9ba6b8; --chat-line: #29303d; --bubble-in: #232b39; --bubble-in-ink: #f1f5f9; --bubble-out: #2959a3; --bubble-out-ink: #ffffff; --pill: #232b39; --pill-ink: #f1f5f9;
+  --c-back: #4a91ea; --c-front: #e8794a; --c-mod: #27bd88; --c-docs: #e5aa1f; --c-bot: #8a93a6; --heat0: #1d2536;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.55; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-block: 40px 56px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 56px; }
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+h1, h2 { font-family: var(--f-display); font-weight: 700; text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+h2 { font-size: clamp(20px, 2.4vw, 26px); font-weight: 500; }
+p { margin: 0; }
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px 40px; align-items: end; }
+.hero h1 { font-size: clamp(34px, 6vw, 64px); line-height: 1.02; }
+.hero h1 .two { color: var(--accent); }
+.hero .lede { max-width: 56ch; color: var(--muted); margin-top: 14px; font-size: 17px; }
+.hero-stats { display: grid; grid-template-columns: repeat(2, auto); gap: 14px 28px; }
+.hero-stats div { display: grid; }
+.hero-stats b { font-family: var(--f-mono); font-size: 22px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.hero-stats span { font-size: 13px; color: var(--muted); }
+.stage { display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); gap: 24px; align-items: stretch; }
+.chat { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; display: grid; grid-template-rows: auto 1fr auto; overflow: hidden; height: 640px; }
+.chat-head { display: flex; gap: 12px; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+.stack { display: flex; }
+.stack .av { margin-left: -8px; border: 2px solid var(--surface); }
+.stack .av:first-child { margin-left: 0; }
+.chat-head b { display: block; font-weight: 600; font-size: 15px; }
+.chat-head small { color: var(--muted); font-size: 12.5px; }
+.chat-body { background-color: var(--chat-bg); background-image: radial-gradient(var(--chat-dot) 1px, transparent 1.2px); background-size: 18px 18px; overflow-y: auto; padding: 14px 12px 18px; display: flex; flex-direction: column; gap: 3px; scroll-behavior: smooth; min-height: 0; }
+.av { width: 30px; height: 30px; flex: none; border-radius: 50%; display: grid; place-items: center; font-family: var(--f-display); font-size: 12px; font-weight: 700; color: #fff; }
+.chip { align-self: center; margin: 12px 0 6px; font-size: 12px; font-weight: 500; color: var(--muted); background: var(--surface); padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+.sys { align-self: center; text-align: center; font-size: 12.5px; color: var(--muted); padding: 4px 12px; margin: 4px 0; background: color-mix(in srgb, var(--surface) 70%, transparent); border-radius: 999px; max-width: 90%; }
+.row { display: flex; gap: 8px; align-items: flex-end; max-width: 88%; }
+.row.me { align-self: flex-end; flex-direction: row-reverse; }
+.row .av.ghost { visibility: hidden; }
+.bubble { background: var(--surface); padding: 7px 11px 7px; border-radius: 16px 16px 16px 5px; min-width: 0; overflow-wrap: anywhere; font-size: 14.5px; line-height: 1.42; box-shadow: 0 1px 0 color-mix(in srgb, var(--ink) 8%, transparent); }
+.row.cont .bubble { border-radius: 5px 16px 16px 5px; }
+.row.me .bubble { background: var(--accent); color: var(--accent-ink); border-radius: 16px 16px 5px 16px; }
+.bubble .who { display: block; font-size: 12.5px; font-weight: 600; margin-bottom: 1px; }
+.bubble .meta { display: block; font-family: var(--f-mono); font-size: 11px; color: var(--muted); margin-top: 3px; }
+.bubble q { font-family: var(--f-mono); font-size: 13px; quotes: none; background: var(--surface-2); padding: 1px 5px; border-radius: 5px; }
+.typing .bubble { display: flex; gap: 4px; align-items: center; padding: 11px 13px; }
+.typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); animation: blink 1s infinite; }
+.typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes blink { 0%, 80%, 100% { opacity: .25; } 40% { opacity: 1; } }
+.pop { animation: pop .28s ease-out; }
+@keyframes pop { from { transform: translateY(6px) scale(.97); opacity: 0; } to { transform: none; opacity: 1; } }
+.composer { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--line); background: var(--surface); }
+.composer input { width: 100%; font: inherit; font-size: 14.5px; color: var(--ink); background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; padding: 9px 14px; }
+.composer input:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.composer .err { grid-column: 1 / -1; font-size: 12.5px; color: #d03b3b; }
+button { font: inherit; cursor: pointer; }
+.send { background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 999px; padding: 0 18px; font-weight: 600; font-size: 14px; }
+.chat { background: var(--chat-surface); border-color: var(--chat-line); color: var(--chat-ink); }
+.chat-head { height: 72px; padding: 0 10px 0 16px; border-bottom: 1px solid var(--chat-line); gap: 10px; }
+.gav { width: 40px; height: 40px; border-radius: 50%; background: var(--bubble-out); display: grid; place-items: center; font-size: 20px; flex: none; }
+.chat-title { min-width: 0; flex: 1; display: grid; }
+.chat-title b { font-size: 17px; font-weight: 600; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.chat-title small { font-size: 12px; color: var(--chat-muted); }
+.head-icons { display: flex; color: var(--chat-muted); }
+.head-icons span { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; }
+.head-icons svg, .composer svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.chat-body { background: var(--chat-surface); background-image: none; padding: 16px 14px 8px; gap: 0; }
+.chip { background: var(--pill); color: var(--pill-ink); border: 0; font-size: 13px; font-weight: 400; padding: 4px 12px; margin: 16px 0 8px; }
+.sys { background: color-mix(in srgb, var(--pill) 80%, transparent); color: var(--pill-ink); font-size: 12px; padding: 4px 12px; margin: 6px 0; border-radius: 999px; }
+.row { max-width: 84%; gap: 8px; margin-top: 10px; }
+.row.cont { margin-top: 3px; }
+.av { width: 32px; height: 32px; font-size: 12px; }
+.msg { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
+.row.me .msg { align-items: flex-end; }
+.who { font-size: 13px; color: var(--chat-muted); margin: 0 4px 3px; max-width: 220px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bubble { background: var(--bubble-in); color: var(--bubble-in-ink); border-radius: 16px; box-shadow: none; padding: 7px 12px 7px; font-size: 15px; line-height: 1.4; }
+.bubble::after { content: ""; display: block; clear: both; }
+.row.cont .bubble { border-radius: 16px; }
+.row.me .bubble { background: var(--bubble-out); color: var(--bubble-out-ink); border-radius: 16px; }
+.time { float: right; display: inline-flex; gap: 3px; align-items: center; font-size: 10.5px; opacity: .75; margin: 7px -3px -4px 10px; font-variant-numeric: tabular-nums; line-height: 1; }
+.time svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.bubble q { background: color-mix(in srgb, currentColor 9%, transparent); }
+.sticker { font-size: 84px; line-height: 1.05; padding: 2px 4px; }
+.time-under { font-size: 10.5px; color: var(--chat-muted); margin: 0 6px; }
+.reacts { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 2px 0; }
+.msg { position: relative; }
+.react { font: inherit; display: inline-flex; align-items: center; gap: 4px; font-size: 12.5px; line-height: 1.3; padding: 2px 8px; border-radius: 999px; background: var(--pill); color: var(--pill-ink); border: 1px solid var(--chat-line); font-variant-numeric: tabular-nums; cursor: pointer; transition: background .2s, border-color .2s; }
+.react:hover { border-color: var(--chat-muted); }
+.react[aria-pressed="true"] { background: color-mix(in srgb, var(--bubble-out) 16%, var(--pill)); border-color: var(--bubble-out); }
+.react:focus-visible { outline: 2px solid var(--bubble-out); outline-offset: 2px; }
+.react.pop-in { animation: rpop .5s cubic-bezier(.3, 1.7, .5, 1) both; }
+.react.bump { animation: bump .32s ease-out; }
+@keyframes rpop { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+@keyframes bump { 50% { transform: scale(1.25); } }
+.fly { position: absolute; pointer-events: none; font-size: 22px; z-index: 2; animation: fly .9s ease-out forwards; }
+@keyframes fly { from { transform: translate(-50%, 0) scale(.6); opacity: 1; } to { transform: translate(-50%, -58px) scale(1.5); opacity: 0; } }
+.composer input:disabled { opacity: .75; cursor: default; }
+.composer input[readonly]:not(:disabled) { cursor: default; caret-color: transparent; }
+.composer input[readonly]:not(:disabled):focus-visible { outline: 2px solid var(--bubble-out); outline-offset: 1px; }
+.composer button:disabled { opacity: .45; cursor: default; }
+@media (prefers-reduced-motion: reduce) { .react.pop-in, .react.bump, .fly { animation: none; } }
+.typing-line { font-size: 12px; color: var(--chat-muted); padding: 8px 4px 2px 44px; }
+.typing-line i { font-style: normal; display: inline-block; animation: wave 1.3s ease-in-out infinite; }
+@keyframes wave { 0%, 55%, 100% { transform: none; opacity: .65; } 25% { transform: translateY(-2px); opacity: 1; } }
+.composer { grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center; gap: 4px; padding: 10px 10px; border-top: 1px solid var(--chat-line); background: var(--chat-surface); }
+.composer .ic { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; color: var(--chat-muted); background: none; border: 0; padding: 0; }
+.composer button.ic:hover { background: var(--pill); color: var(--chat-ink); }
+.composer input { background: var(--pill); border: 1px solid transparent; border-radius: 20px; color: var(--chat-ink); font-size: 15px; padding: 9px 14px; }
+.send { width: 40px; height: 40px; padding: 0; display: grid; place-items: center; border-radius: 50%; background: var(--bubble-out); color: var(--bubble-out-ink); }
+.composer .err { grid-column: 2 / -1; }
+@media (prefers-reduced-motion: reduce) { .typing-line i { animation: none; } }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 20px 22px; display: grid; grid-template-rows: auto auto 1fr auto; gap: 14px; min-width: 0; height: 640px; }
+.controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.play { background: var(--ink); color: var(--bg); border: 0; border-radius: 999px; padding: 10px 18px; font-weight: 600; font-size: 14px; display: inline-flex; gap: 8px; align-items: center; }
+.play svg { width: 14px; height: 14px; fill: currentColor; }
+.speed { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; gap: 2px; }
+.speed button { background: none; border: 0; color: var(--muted); border-radius: 999px; padding: 5px 11px; font-family: var(--f-mono); font-size: 12.5px; }
+.speed button[aria-pressed="true"] { background: var(--surface-2); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); }
+.clock { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: baseline; justify-content: space-between; }
+.odo { font-family: var(--f-display); font-weight: 700; font-size: clamp(34px, 5vw, 52px); line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.odo-label { color: var(--muted); font-size: 13.5px; margin-top: 6px; }
+.day { text-align: right; }
+.day b { font-family: var(--f-mono); font-size: 15px; font-weight: 500; display: block; }
+.day span { color: var(--muted); font-size: 13px; font-family: var(--f-mono); }
+.sky { position: relative; min-height: 0; }
+.sky canvas { width: 100%; height: 100%; display: block; }
+.legend { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; border-top: 1px solid var(--line); padding-top: 12px; }
+.legend div { display: grid; gap: 1px; min-width: 0; }
+.legend small { font-size: 12px; color: var(--muted); display: flex; gap: 6px; align-items: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.legend small::before { content: ""; width: 9px; height: 9px; border-radius: 2px; background: var(--c); flex: none; }
+.legend b { font-family: var(--f-mono); font-weight: 500; font-size: 15px; font-variant-numeric: tabular-nums; }
+.section { display: grid; gap: 18px; }
+.section-head { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: baseline; justify-content: space-between; }
+.section-head p { color: var(--muted); font-size: 14.5px; max-width: 60ch; }
+.heat-scroll { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px 16px 12px; }
+.heat { min-width: 780px; display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 4px 6px; }
+.heat .days { display: grid; grid-template-rows: repeat(7, 1fr); gap: 2px; font-size: 10.5px; color: var(--muted); font-family: var(--f-mono); }
+.heat .days span { line-height: 1; display: flex; align-items: center; }
+.months { position: relative; height: 14px; font-size: 10.5px; color: var(--muted); font-family: var(--f-mono); }
+.months span { position: absolute; top: 0; white-space: nowrap; }
+.cells { display: grid; grid-template-rows: repeat(7, 1fr); grid-auto-flow: column; gap: 2px; }
+.cells i { aspect-ratio: 1; border-radius: 2px; background: var(--heat0); transition: opacity .3s; }
+.cells i.out { background: transparent; }
+.cells i.l1 { background: color-mix(in srgb, var(--accent) 28%, var(--heat0)); }
+.cells i.l2 { background: color-mix(in srgb, var(--accent) 52%, var(--heat0)); }
+.cells i.l3 { background: color-mix(in srgb, var(--accent) 76%, var(--heat0)); }
+.cells i.l4 { background: var(--accent); }
+.cells i.future { opacity: .12; }
+.heat-foot { display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between; margin-top: 10px; font-size: 12px; color: var(--muted); }
+.scale { display: inline-flex; gap: 3px; align-items: center; }
+.scale i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.rhythm { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 24px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 20px; min-width: 0; }
+.card h3 { margin: 0 0 4px; font-size: 15px; font-weight: 600; }
+.card .sub { color: var(--muted); font-size: 13px; }
+.dial svg { width: 100%; max-width: 260px; display: block; margin: 8px auto 0; }
+.week { display: grid; gap: 6px; margin-top: 14px; }
+.week div { display: grid; grid-template-columns: 34px minmax(0, 1fr) 34px; gap: 8px; align-items: center; font-size: 12.5px; }
+.week span { color: var(--muted); font-family: var(--f-mono); }
+.week em { font-style: normal; font-family: var(--f-mono); text-align: right; }
+.week .bar { height: 10px; border-radius: 3px; background: var(--heat0); overflow: hidden; }
+.week .bar i { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+.fact { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px 18px; display: grid; gap: 6px; align-content: start; }
+.fact b { font-family: var(--f-display); font-size: 26px; font-weight: 500; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.fact b.code { font-family: var(--f-mono); font-size: 22px; }
+.fact p { font-size: 14px; color: var(--muted); }
+footer { color: var(--muted); font-size: 12.5px; border-top: 1px solid var(--line); padding-top: 16px; max-width: 80ch; }
+#confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 20; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (max-width: 900px) {
+  .stage { grid-template-columns: minmax(0, 1fr); }
+  .chat { height: 560px; }
+  .panel { height: auto; grid-template-rows: auto auto 260px auto; }
+  .rhythm { grid-template-columns: minmax(0, 1fr); }
+  .hero { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 520px) {
+  .legend { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero-stats b { font-size: 19px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pop, .typing i { animation: none; }
+  .chat-body { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<div class="wrap">
+  <header class="hero">
+    <div>
+      <div class="eyebrow">24 Nov 2024 → 24 Nov 2026 · day 731</div>
+      <h1>Messenger turns <span class="two">2</span></h1>
+      <p class="lede">Two years ago messenger-back got its first commit. Press replay and watch it all happen again: the Python start, the 221 quiet days, the Go rewrite and the last seven weeks.</p>
+    </div>
+    <div class="hero-stats">
+      <div><b>222,097</b><span>lines of code</span></div>
+      <div><b>648</b><span>commits</span></div>
+      <div><b>378</b><span>merged pull requests</span></div>
+      <div><b>92</b><span>releases</span></div>
+    </div>
+  </header>
+
+  <section class="stage" aria-label="The history as a chat">
+    <div class="chat">
+      <div class="chat-head">
+        <div class="gav" aria-hidden="true">🎂</div>
+        <div class="chat-title"><b>messenger · 2 years</b><small id="members">6 members</small></div>
+        <div class="head-icons" aria-hidden="true">
+          <span><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <span><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
+          <span><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg></span>
+        </div>
+      </div>
+      <div class="chat-body" id="chat" aria-live="polite"></div>
+      <form class="composer" id="composer" novalidate>
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></span>
+        <label class="sr" for="wish">Your birthday wish, ready to send</label>
+        <input id="wish" type="text" readonly value="Happy 2nd birthday, messenger 🎂🎉" autocomplete="off">
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01"/><path d="M15 9h.01"/></svg></span>
+        <button class="send" type="submit" aria-label="Send"><svg viewBox="0 0 24 24"><path d="m3 3 3 9-3 9 19-9Z"/><path d="M6 12h16"/></svg></button>
+      </form>
+    </div>
+
+    <div class="panel">
+      <div class="controls">
+        <button class="play" id="play" type="button"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1.5v11l9-5.5z"/></svg><span>Replay two years</span></button>
+        <div class="speed" role="group" aria-label="Replay speed">
+          <button type="button" data-s="1" aria-pressed="false">1×</button>
+          <button type="button" data-s="2" aria-pressed="true">2×</button>
+          <button type="button" data-s="4" aria-pressed="false">4×</button>
+        </div>
+      </div>
+      <div class="clock">
+        <div><div class="odo" id="odo">222,097</div><div class="odo-label">lines of code across all repos</div></div>
+        <div class="day"><b id="daynum">Day 731</b><span id="date">24 Nov 2026</span></div>
+      </div>
+      <div class="sky"><canvas id="sky" role="img" aria-label="Skyline: one tower per repo, height is lines of code"></canvas></div>
+      <div class="legend" id="legend"></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="h-heat">
+    <div class="section-head">
+      <h2 id="h-heat">Every day with a commit</h2>
+      <p>81 active days out of 731. Nothing for months, then October and November 2026 lit up almost every day.</p>
+    </div>
+    <div class="heat-scroll">
+      <div class="heat">
+        <div></div>
+        <div class="months" id="months"></div>
+        <div class="days"><span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span><span></span><span>Sun</span></div>
+        <div class="cells" id="cells"></div>
+      </div>
+      <div class="heat-foot">
+        <span>Commits on the default branch of all four repos, local time.</span>
+        <span class="scale">Less <i style="background:var(--heat0)"></i><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i> More</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="h-rhythm">
+    <div class="section-head">
+      <h2 id="h-rhythm">When the code gets written</h2>
+      <p>The busiest hour is 23:00, closely followed by midnight. One commit in three lands between 00:00 and 05:00.</p>
+    </div>
+    <div class="rhythm">
+      <div class="card dial">
+        <h3>Commits by hour</h3>
+        <div class="sub">Night hours 00–05 in blue</div>
+        <svg id="dial" viewBox="0 0 240 240" role="img" aria-label="Commits by hour of day, peak at 23:00 with 62 and 00:00 with 61"></svg>
+        <div class="week" id="week" aria-label="Commits by weekday"></div>
+      </div>
+      <div class="facts">
+        <div class="fact"><b class="code">"test"</b><p>The shortest commit message. Close behind: "empty", "rm db" and "commit".</p></div>
+        <div class="fact"><b>55</b><p>Commits on 2 Oct 2026, the busiest day. 1 to 3 Oct together: 143.</p></div>
+        <div class="fact"><b>221 days</b><p>The longest pause, from 26 Oct 2025 to 4 Jun 2026.</p></div>
+        <div class="fact"><b>23 days</b><p>The current streak: a commit every day since 1 Nov 2026.</p></div>
+        <div class="fact"><b>~24,000</b><p>Lines added on 6 and 7 Nov 2026: passkeys, QR sign-in and encrypted audio calls.</p></div>
+        <div class="fact"><b>0 → 31%</b><p>Share of tests in the code. There were none before Sep 2026; now 68,116 lines.</p></div>
+        <div class="fact"><b>15,713</b><p>Lines messenger-moderation got on its first full day: six PRs, one day.</p></div>
+        <div class="fact"><b>Friday</b><p>The busiest weekday with 117 commits. Wednesday is the quietest with 57.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>Counted on 23 Nov 2026 from the default branches of messenger-back, messenger-front, messenger-moderation and messenger-docs. Lines of code exclude generated code, lock files, images and a Python package folder that was committed by mistake. Commits include merged pull request branches and release-bot commits.</footer>
+</div>
+
+<script>
+const DATA = {"commits":{"2024-11-24":1,"2024-11-25":1,"2024-11-27":1,"2024-11-28":2,"2024-12-10":5,"2024-12-29":9,"2024-12-30":42,"2025-01-28":3,"2025-01-30":5,"2025-01-31":8,"2025-02-01":1,"2025-02-02":6,"2025-02-03":2,"2025-02-04":2,"2025-04-05":4,"2025-04-06":10,"2025-04-07":1,"2025-04-10":1,"2025-04-11":1,"2025-04-12":1,"2025-04-13":1,"2025-04-14":1,"2025-04-15":1,"2025-04-16":6,"2025-04-17":2,"2025-04-18":15,"2025-04-19":2,"2025-04-20":2,"2025-04-21":2,"2025-06-09":2,"2025-06-11":3,"2025-06-16":1,"2025-06-21":2,"2025-06-27":3,"2025-07-08":1,"2025-07-09":8,"2025-07-11":2,"2025-07-14":1,"2025-09-14":1,"2025-09-15":1,"2025-09-16":1,"2025-09-17":1,"2025-09-28":2,"2025-10-03":3,"2025-10-04":1,"2025-10-25":2,"2025-10-26":2,"2026-06-04":2,"2026-06-05":3,"2026-09-26":3,"2026-09-27":18,"2026-09-30":4,"2026-10-01":38,"2026-10-02":55,"2026-10-03":50,"2026-10-04":23,"2026-10-10":24,"2026-10-11":4,"2026-11-01":9,"2026-11-02":6,"2026-11-03":26,"2026-11-04":7,"2026-11-05":6,"2026-11-06":4,"2026-11-07":4,"2026-11-08":10,"2026-11-09":16,"2026-11-10":22,"2026-11-11":3,"2026-11-12":10,"2026-11-13":10,"2026-11-14":2,"2026-11-15":1,"2026-11-16":14,"2026-11-17":2,"2026-11-18":24,"2026-11-19":49,"2026-11-20":13,"2026-11-21":6,"2026-11-22":3,"2026-11-23":2},"loc":{"back":{"2024-11-24":313,"2024-11-25":424,"2024-11-27":684,"2024-11-28":973,"2024-12-10":973,"2024-12-29":973,"2024-12-30":951,"2025-01-31":951,"2025-04-06":1329,"2025-04-07":1483,"2025-04-10":1913,"2025-04-11":2018,"2025-04-12":2207,"2025-04-13":2232,"2025-04-14":2661,"2025-04-15":2859,"2025-04-16":2875,"2025-04-17":3080,"2025-04-19":3253,"2025-04-20":3474,"2025-04-21":3474,"2025-06-21":3556,"2025-06-27":3638,"2025-07-09":3645,"2025-07-11":3688,"2025-07-14":3586,"2025-10-25":3688,"2025-10-26":3724,"2026-06-04":3873,"2026-09-27":5899,"2026-10-01":7776,"2026-10-02":8533,"2026-10-03":9841,"2026-10-04":24172,"2026-10-10":52560,"2026-10-11":52607,"2026-11-01":55357,"2026-11-02":55398,"2026-11-03":43427,"2026-11-04":45570,"2026-11-05":47002,"2026-11-06":52715,"2026-11-07":60592,"2026-11-08":61210,"2026-11-09":62247,"2026-11-10":67906,"2026-11-12":71630,"2026-11-13":71630,"2026-11-16":80298,"2026-11-18":90599,"2026-11-19":97051,"2026-11-20":102147,"2026-11-21":104367,"2026-11-22":105145},"front":{"2025-04-16":6999,"2025-04-17":7913,"2025-04-18":7993,"2025-04-19":8247,"2025-04-20":8668,"2025-04-21":8754,"2025-06-09":9345,"2025-06-11":9527,"2025-06-15":9583,"2025-06-21":9540,"2025-06-27":10174,"2025-07-08":10194,"2025-07-09":10194,"2025-07-11":10660,"2025-09-14":10876,"2025-09-15":10948,"2025-09-16":11587,"2025-09-17":11587,"2025-10-03":11624,"2025-10-04":13503,"2025-10-25":12744,"2025-10-26":13208,"2026-06-04":18279,"2026-06-05":18487,"2026-09-27":23343,"2026-09-30":24402,"2026-10-01":24855,"2026-10-02":24625,"2026-10-03":25991,"2026-10-04":26920,"2026-10-10":28001,"2026-11-01":29412,"2026-11-02":32089,"2026-11-03":35823,"2026-11-04":37401,"2026-11-05":41112,"2026-11-06":45911,"2026-11-07":51297,"2026-11-08":56689,"2026-11-09":59891,"2026-11-10":66969,"2026-11-11":68875,"2026-11-12":71712,"2026-11-13":72681,"2026-11-14":74352,"2026-11-15":74352,"2026-11-16":78133,"2026-11-17":83263,"2026-11-18":87844,"2026-11-19":88270,"2026-11-20":92729,"2026-11-21":95388,"2026-11-22":98151,"2026-11-23":98151},"mod":{"2026-11-18":9,"2026-11-19":15713},"docs":{"2026-11-18":9,"2026-11-19":3088}}};
+const REPOS = [
+  { k: 'back', name: 'messenger-back', short: 'back', c: '--c-back' },
+  { k: 'front', name: 'messenger-front', short: 'front', c: '--c-front' },
+  { k: 'mod', name: 'messenger-moderation', short: 'moderation', c: '--c-mod' },
+  { k: 'docs', name: 'messenger-docs', short: 'docs', c: '--c-docs' }
+];
+const PEOPLE = {
+  back: { name: 'messenger-back', i: 'B', c: '--c-back' },
+  front: { name: 'messenger-front', i: 'F', c: '--c-front' },
+  mod: { name: 'messenger-moderation', i: 'M', c: '--c-mod' },
+  docs: { name: 'messenger-docs', i: 'D', c: '--c-docs' },
+  bot: { name: 'release-please', i: 'R', c: '--c-bot' },
+  me: { name: 'myronsi', i: 'M', c: '--accent' }
+};
+const MSGS = [
+  { d: '2024-11-24', s: 'sys', t: 'myronsi created the group', mem: 1 },
+  { d: '2024-11-24', s: 'sys', t: 'myronsi added messenger-back', mem: 2 },
+  { d: '2024-11-24', tm: '22:44', s: 'back', t: 'First commit 👋' },
+  { d: '2024-11-25', tm: '20:00', s: 'back', t: 'Second commit' },
+  { d: '2024-11-25', tm: '20:00', s: 'back', t: 'Creative, I know 😅' },
+  { d: '2024-12-30', tm: '00:26', s: 'back', h: '42 commits today. One of them was <q>Delete lib/python3.12/site-packages directory</q>' },
+  { d: '2024-12-30', tm: '00:26', s: 'back', t: 'We don’t talk about it 🙈', r: [['😂', 3]] },
+  { d: '2025-04-16', s: 'sys', t: 'myronsi added messenger-front', mem: 3 },
+  { d: '2025-04-16', tm: '14:03', s: 'front', t: 'Hi everyone 👋 Vite, React, shadcn. 5,334 lines on day one' },
+  { d: '2025-04-21', tm: '19:49', s: 'back', t: 'Profiles, groups, file sending and a safe password reset. Busy week 💪' },
+  { d: '2025-06-27', tm: '21:36', s: 'back', t: 'Reactions and voice messages are in 🎙️' },
+  { d: '2025-07-09', tm: '11:52', s: 'back', h: '<q>empty</q>' },
+  { d: '2025-07-09', tm: '11:52', s: 'back', t: 'That’s a real commit message btw' },
+  { d: '2025-10-25', tm: '14:56', s: 'back', h: '<q>Revert repository back to 58185d0</q>' },
+  { d: '2025-10-25', tm: '14:56', s: 'back', t: 'Don’t ask 🫠' },
+  { d: '2025-10-26', s: 'sys', t: '💤 221 days without a single message' },
+  { d: '2026-06-04', tm: '23:58', s: 'front', t: 'I’m back 👀 Avatar cropping is in, and I’m 18k lines now' },
+  { d: '2026-09-27', tm: '00:03', s: 'front', t: 'alpha 0.4.0 is merged. Docker too 🐳' },
+  { d: '2026-10-01', s: 'sys', t: 'myronsi added release-please', mem: 4 },
+  { d: '2026-10-01', tm: '02:41', s: 'bot', t: 'v0.4.0 released 🚀' },
+  { d: '2026-10-02', tm: '19:29', s: 'back', t: '55 commits today 🔥 The busiest day in two years' },
+  { d: '2026-10-04', tm: '19:52', s: 'back', t: 'Big news: I’m being rewritten in Go 🐹' },
+  { d: '2026-10-04', tm: '19:52', s: 'back', t: 'Skeleton, PostgreSQL schema v2, auth and 2FA. +13,331 lines in three PRs', r: [['🔥', 3], ['🎉', 2]] },
+  { d: '2026-10-10', tm: '13:49', s: 'back', t: 'WebSocket gateway, ScyllaDB messages, media, chats, groups and search. +28k lines in one week' },
+  { d: '2026-10-11', tm: '22:15', s: 'bot', t: 'v1.0.0-alpha.1 released. The first Go release 🎉' },
+  { d: '2026-11-03', s: 'sys', t: 'python left the group' },
+  { d: '2026-11-03', tm: '22:32', s: 'back', t: 'The Python backend is retired. −2,929 lines and it felt great 🐍👋', r: [['🫡', 2]] },
+  { d: '2026-11-07', tm: '15:55', s: 'back', t: 'End-to-end encrypted audio calls 📞🔒' },
+  { d: '2026-11-07', tm: '16:17', s: 'front', t: 'Passkeys and QR sign-in from my side. About 24,000 lines in two days' },
+  { d: '2026-11-10', tm: '04:38', s: 'front', t: 'Stickers, a dark theme, and you can draw on images now 🎨' },
+  { d: '2026-11-16', tm: '16:57', s: 'back', t: 'Pronouns, birthdays, profile music, connected accounts and custom emoji ✨' },
+  { d: '2026-11-18', s: 'sys', t: 'myronsi added messenger-moderation', mem: 5 },
+  { d: '2026-11-18', s: 'sys', t: 'myronsi added messenger-docs', mem: 6 },
+  { d: '2026-11-19', tm: '10:54', s: 'docs', t: 'I wrote the help center 📚 3,088 lines' },
+  { d: '2026-11-19', tm: '16:45', s: 'mod', t: 'Six PRs in one day: a queue, decisions, cases, an inbox and stats. 15,713 lines 😮‍💨', r: [['🤯', 3]] },
+  { d: '2026-11-21', tm: '21:12', s: 'back', t: 'Profile links, public cards, mentions and pinned messages 📌' },
+  { d: '2026-11-23', tm: '00:40', s: 'front', t: 'Chat UX overhaul is merged. I’m 98,151 lines now' },
+  { d: '2026-11-24', tm: '00:00', s: 'back', t: 'Two years today 🎂 222,097 lines, 648 commits, 378 merged PRs, 92 releases', r: [['🎂', 5], ['❤️', 4]] },
+  { d: '2026-11-24', tm: '00:01', s: 'front', st: '🥳' },
+  { d: '2026-11-24', tm: '00:01', s: 'front', t: 'Happy birthday to us' }
+];
+const START = '2024-11-24', END = '2026-11-24';
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fmt = n => Math.round(n).toLocaleString('en-US');
+const toD = s => new Date(s + 'T00:00:00Z');
+const iso = d => d.toISOString().slice(0, 10);
+const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const human = s => { const d = toD(s); return d.getUTCDate() + ' ' + MON[d.getUTCMonth()] + ' ' + d.getUTCFullYear(); };
+const dayNo = s => Math.round((toD(s) - toD(START)) / 864e5) + 1;
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+const SERIES = {};
+REPOS.forEach(r => { SERIES[r.k] = Object.entries(DATA.loc[r.k] || {}).sort((a, b) => a[0] < b[0] ? -1 : 1); });
+function locAt(k, d) { let v = 0; for (const [dd, n] of SERIES[k]) { if (dd <= d) v = n; else break; } return Math.max(0, v); }
+
+const chat = document.getElementById('chat');
+const membersEl = document.getElementById('members');
+const CHECKS = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 7 17l-5-5"/><path d="m22 10-7.5 7.5L13 16"/></svg>';
+let lastDate = null, lastSender = null;
+function setMembers(n) { membersEl.textContent = n + (n === 1 ? ' member' : ' members'); }
+function avatar(p, ghost) {
+  const a = document.createElement('span');
+  a.className = 'av' + (ghost ? ' ghost' : '');
+  a.style.background = 'var(' + p.c + ')';
+  a.textContent = p.i;
+  a.setAttribute('aria-hidden', 'true');
+  return a;
+}
+function addMsg(m, animate) {
+  if (m.d !== lastDate) {
+    const c = document.createElement('div');
+    c.className = 'chip';
+    c.textContent = human(m.d);
+    chat.insertBefore(c, typingEl);
+    lastDate = m.d; lastSender = null;
+  }
+  let el;
+  if (m.s === 'sys') {
+    el = document.createElement('div');
+    el.className = 'sys';
+    el.textContent = m.t;
+    lastSender = null;
+    if (m.mem) setMembers(m.mem);
+  } else {
+    const me = m.s === 'me';
+    const p = PEOPLE[m.s];
+    const cont = lastSender === m.s;
+    el = document.createElement('div');
+    el.className = 'row' + (me ? ' me' : '') + (cont ? ' cont' : '');
+    if (!me) el.appendChild(avatar(p, cont));
+    const box = document.createElement('div');
+    box.className = 'msg';
+    if (!me && !cont) {
+      const w = document.createElement('span');
+      w.className = 'who';
+      w.textContent = p.name;
+      box.appendChild(w);
+    }
+    if (m.st) {
+      const s = document.createElement('div');
+      s.className = 'sticker';
+      s.setAttribute('role', 'img');
+      s.setAttribute('aria-label', 'Sticker ' + m.st);
+      s.textContent = m.st;
+      box.appendChild(s);
+      const tu = document.createElement('span');
+      tu.className = 'time-under';
+      tu.textContent = m.tm || '';
+      box.appendChild(tu);
+    } else {
+      const b = document.createElement('div');
+      b.className = 'bubble';
+      const body = document.createElement('span');
+      if (m.h) body.innerHTML = m.h; else body.textContent = m.t;
+      b.appendChild(body);
+      if (m.tm) {
+        const tm = document.createElement('span');
+        tm.className = 'time';
+        tm.textContent = m.tm;
+        if (me) tm.insertAdjacentHTML('beforeend', CHECKS);
+        b.appendChild(tm);
+      }
+      box.appendChild(b);
+    }
+    if (m.r) {
+      if (animate) setTimeout(() => { if (box.isConnected) addReactions(box, m.r, true); }, reduce ? 0 : 700 / speed);
+      else addReactions(box, m.r, false);
+    }
+    el.appendChild(box);
+    lastSender = m.s;
+  }
+  if (animate && !reduce) el.classList.add('pop');
+  chat.insertBefore(el, typingEl);
+  chat.scrollTop = chat.scrollHeight;
+}
+function restart(el, cls) { el.classList.remove('pop-in', 'bump'); void el.offsetWidth; el.classList.add(cls); }
+function chipFor(e, n) {
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'react';
+  b.dataset.e = e;
+  b.dataset.n = n;
+  b.setAttribute('aria-pressed', 'false');
+  b.setAttribute('aria-label', 'React with ' + e);
+  const se = document.createElement('span'); se.textContent = e;
+  const sn = document.createElement('span'); sn.className = 'rn'; sn.textContent = n;
+  b.appendChild(se); b.appendChild(sn);
+  return b;
+}
+function reactsOf(box, create) {
+  let rs = box.querySelector('.reacts');
+  if (!rs && create) { rs = document.createElement('div'); rs.className = 'reacts'; box.appendChild(rs); }
+  return rs;
+}
+function setCount(c, n) { c.dataset.n = n; c.querySelector('.rn').textContent = n; }
+function flyEmoji(box, e, from) {
+  if (reduce) return;
+  const f = document.createElement('span');
+  f.className = 'fly';
+  f.setAttribute('aria-hidden', 'true');
+  f.textContent = e;
+  const br = box.getBoundingClientRect(), fr = from.getBoundingClientRect();
+  f.style.left = (fr.left - br.left + fr.width / 2) + 'px';
+  f.style.top = (fr.top - br.top - 6) + 'px';
+  box.appendChild(f);
+  f.addEventListener('animationend', () => f.remove());
+}
+function addReactions(box, list, animate) {
+  const rs = reactsOf(box, true);
+  const live = animate && !reduce;
+  list.forEach(([e, n], k) => {
+    const c = chipFor(e, live ? 1 : n);
+    rs.appendChild(c);
+    if (!live) return;
+    c.style.animationDelay = (k * 0.14) + 's';
+    c.classList.add('pop-in');
+    let v = 1;
+    setTimeout(() => {
+      const id = setInterval(() => {
+        if (!c.isConnected || v >= n) { clearInterval(id); return; }
+        v++; setCount(c, v); c.style.animationDelay = ''; restart(c, 'bump');
+      }, 230);
+    }, 420 + k * 140);
+  });
+  chat.scrollTop = chat.scrollHeight;
+}
+function toggleReact(box, e, existing) {
+  const rs = reactsOf(box, true);
+  let c = existing || Array.from(rs.children).find(x => x.dataset.e === e);
+  const isNew = !c;
+  if (isNew) { c = chipFor(e, 0); rs.appendChild(c); }
+  const mine = c.getAttribute('aria-pressed') === 'true';
+  const n = Number(c.dataset.n) + (mine ? -1 : 1);
+  if (n <= 0) { c.remove(); if (!rs.children.length) rs.remove(); return; }
+  c.setAttribute('aria-pressed', String(!mine));
+  setCount(c, n);
+  c.style.animationDelay = '';
+  restart(c, isNew ? 'pop-in' : 'bump');
+  if (!mine) flyEmoji(box, e, c);
+}
+chat.addEventListener('click', ev => {
+  const c = ev.target.closest('.react');
+  if (c) toggleReact(c.closest('.msg'), c.dataset.e, c);
+});
+chat.addEventListener('dblclick', ev => {
+  const b = ev.target.closest('.bubble, .sticker');
+  if (!b) return;
+  const sel = window.getSelection && window.getSelection();
+  if (sel) sel.removeAllRanges();
+  const box = b.closest('.msg');
+  const rs = reactsOf(box, false);
+  const mineHeart = rs && Array.from(rs.children).find(x => x.dataset.e === '❤️' && x.getAttribute('aria-pressed') === 'true');
+  if (!mineHeart) toggleReact(box, '❤️');
+});
+let typingEl = null;
+function showTyping(s, sticker) {
+  hideTyping();
+  typingEl = document.createElement('div');
+  typingEl.className = 'typing-line';
+  typingEl.setAttribute('role', 'status');
+  const text = PEOPLE[s].name + (sticker ? ' is choosing a sticker…' : ' is typing…');
+  if (reduce) typingEl.textContent = text;
+  else Array.from(text).forEach((ch, k) => { const i = document.createElement('i'); i.textContent = ch === ' ' ? ' ' : ch; i.style.animationDelay = (k * 0.035) + 's'; typingEl.appendChild(i); });
+  chat.appendChild(typingEl);
+  chat.scrollTop = chat.scrollHeight;
+}
+function hideTyping() { if (typingEl) { typingEl.remove(); typingEl = null; } }
+function resetChat() { chat.innerHTML = ''; lastDate = null; lastSender = null; typingEl = null; membersEl.textContent = ''; }
+function nowTime() { const n = new Date(); return String(n.getHours()).padStart(2, '0') + ':' + String(n.getMinutes()).padStart(2, '0'); }
+
+const odo = document.getElementById('odo');
+const daynum = document.getElementById('daynum');
+const dateEl = document.getElementById('date');
+const legend = document.getElementById('legend');
+const legendVals = {};
+REPOS.forEach(r => {
+  const d = document.createElement('div');
+  d.style.setProperty('--c', 'var(' + r.c + ')');
+  d.innerHTML = '<small></small><b></b>';
+  d.querySelector('small').textContent = r.name;
+  legend.appendChild(d);
+  legendVals[r.k] = d.querySelector('b');
+});
+const cur = { back: 0, front: 0, mod: 0, docs: 0 };
+const target = { back: 0, front: 0, mod: 0, docs: 0 };
+let curDate = END;
+function setDate(d, instant) {
+  curDate = d;
+  REPOS.forEach(r => { target[r.k] = locAt(r.k, d); });
+  daynum.textContent = 'Day ' + dayNo(d);
+  dateEl.textContent = human(d);
+  markHeat(d);
+  if (instant || reduce) { REPOS.forEach(r => { cur[r.k] = target[r.k]; }); renderNums(); drawSky(); }
+  else kick();
+}
+function renderNums() {
+  let total = 0;
+  REPOS.forEach(r => { total += cur[r.k]; legendVals[r.k].textContent = fmt(cur[r.k]); });
+  odo.textContent = fmt(total);
+}
+let raf = null;
+function kick() { if (!raf) raf = requestAnimationFrame(step); }
+function step() {
+  let moving = false;
+  REPOS.forEach(r => {
+    const diff = target[r.k] - cur[r.k];
+    if (Math.abs(diff) < 1) cur[r.k] = target[r.k];
+    else { cur[r.k] += diff * 0.12; moving = true; }
+  });
+  renderNums(); drawSky();
+  raf = moving ? requestAnimationFrame(step) : null;
+}
+
+const sky = document.getElementById('sky');
+function hash(a, b, c) { let h = (a * 73856093) ^ (b * 19349663) ^ (c * 83492791); h = (h ^ (h >>> 13)) * 1274126177; return ((h ^ (h >>> 16)) >>> 0) / 4294967295; }
+function drawSky() {
+  const W = sky.clientWidth, H = sky.clientHeight;
+  if (!W || !H) return;
+  const dpr = window.devicePixelRatio || 1;
+  if (sky.width !== Math.round(W * dpr) || sky.height !== Math.round(H * dpr)) { sky.width = Math.round(W * dpr); sky.height = Math.round(H * dpr); }
+  const ctx = sky.getContext('2d');
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, W, H);
+  const ground = H - 26, top = 30, scale = (ground - top) / 110000;
+  const ink = css('--ink'), muted = css('--muted'), line = css('--line'), surface = css('--surface');
+  const slot = W / REPOS.length, tw = Math.min(84, slot * 0.6);
+  ctx.strokeStyle = line; ctx.lineWidth = 1;
+  [25000, 50000, 75000, 100000].forEach(v => {
+    const y = Math.round(ground - v * scale) + 0.5;
+    ctx.setLineDash([3, 4]); ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+    ctx.setLineDash([]); ctx.fillStyle = muted; ctx.font = '10px ' + css('--f-mono'); ctx.textAlign = 'left'; ctx.fillText((v / 1000) + 'k', 2, y - 4);
+  });
+  REPOS.forEach((r, i) => {
+    const v = cur[r.k];
+    const h = v * scale;
+    const x = Math.round(slot * i + (slot - tw) / 2);
+    const y = ground - h;
+    const col = css(r.c);
+    if (h > 0.5) {
+      ctx.fillStyle = col;
+      ctx.beginPath();
+      if (ctx.roundRect) ctx.roundRect(x, y, tw, h, [4, 4, 0, 0]); else ctx.rect(x, y, tw, h);
+      ctx.fill();
+      const cols = 4, gx = 7, ww = (tw - gx * (cols + 1)) / cols, wh = 5, gy = 6;
+      for (let row = 0; y + gy + row * (wh + gy) + wh < ground - 4; row++) {
+        for (let c = 0; c < cols; c++) {
+          const lit = hash(i + 1, row, c) > 0.45;
+          ctx.fillStyle = lit ? 'rgba(255,255,255,0.62)' : 'rgba(0,0,0,0.14)';
+          ctx.fillRect(x + gx + c * (ww + gx), y + gy + row * (wh + gy), ww, wh);
+        }
+      }
+      if (r.k === 'back' && h > 30) { ctx.strokeStyle = col; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x + tw / 2, y); ctx.lineTo(x + tw / 2, y - 12); ctx.stroke(); }
+      ctx.fillStyle = ink; ctx.font = '500 11px ' + css('--f-mono'); ctx.textAlign = 'center';
+      ctx.fillText(fmt(v), x + tw / 2, Math.max(12, y - (r.k === 'back' && h > 30 ? 16 : 6)));
+    }
+    ctx.fillStyle = muted; ctx.font = '12px ' + css('--f-body'); ctx.textAlign = 'center';
+    ctx.fillText(v > 0 ? r.short : r.short + ' (not yet)', x + tw / 2, H - 8);
+  });
+  ctx.strokeStyle = ink; ctx.globalAlpha = 0.5; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(0, ground + 0.5); ctx.lineTo(W, ground + 0.5); ctx.stroke(); ctx.globalAlpha = 1;
+}
+if ('ResizeObserver' in window) new ResizeObserver(() => drawSky()).observe(sky);
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => drawSky());
+new MutationObserver(() => drawSky()).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+const cellsEl = document.getElementById('cells');
+const monthsEl = document.getElementById('months');
+const heatCells = [];
+(function buildHeat() {
+  const s = toD(START), e = toD(END);
+  const first = new Date(s); first.setUTCDate(first.getUTCDate() - ((first.getUTCDay() + 6) % 7));
+  const weeks = Math.ceil(((e - first) / 864e5 + 1) / 7);
+  cellsEl.style.gridTemplateColumns = 'repeat(' + weeks + ', minmax(0, 1fr))';
+  const frag = document.createDocumentFragment();
+  let lastMonth = -1;
+  for (let w = 0; w < weeks; w++) {
+    for (let r = 0; r < 7; r++) {
+      const d = new Date(first); d.setUTCDate(first.getUTCDate() + w * 7 + r);
+      const key = iso(d);
+      const c = document.createElement('i');
+      if (key < START || key > END) c.className = 'out';
+      else {
+        const n = DATA.commits[key] || 0;
+        c.className = n === 0 ? '' : n < 3 ? 'l1' : n < 8 ? 'l2' : n < 20 ? 'l3' : 'l4';
+        c.title = human(key) + ': ' + n + (n === 1 ? ' commit' : ' commits');
+        heatCells.push([key, c]);
+      }
+      frag.appendChild(c);
+      if (r === 0 && d.getUTCMonth() !== lastMonth && key >= START) {
+        lastMonth = d.getUTCMonth();
+        const sp = document.createElement('span');
+        sp.style.left = (w / weeks * 100) + '%';
+        sp.textContent = lastMonth === 0 ? String(d.getUTCFullYear()) : MON[lastMonth];
+        if (lastMonth % 2 === 0 || lastMonth === 10) monthsEl.appendChild(sp);
+      }
+    }
+  }
+  cellsEl.appendChild(frag);
+})();
+function markHeat(d) { heatCells.forEach(([k, c]) => c.classList.toggle('future', k > d)); }
+
+(function buildDial() {
+  const H = [61,59,47,29,22,7,5,3,6,5,9,11,11,24,30,24,30,21,33,33,33,40,43,62];
+  const svg = document.getElementById('dial');
+  const ns = 'http://www.w3.org/2000/svg';
+  const cx = 120, cy = 120, r0 = 40, max = Math.max(...H), len = 60;
+  const ring = document.createElementNS(ns, 'circle');
+  ring.setAttribute('cx', cx); ring.setAttribute('cy', cy); ring.setAttribute('r', r0 - 6);
+  ring.setAttribute('fill', 'none'); ring.setAttribute('stroke', 'var(--line)');
+  svg.appendChild(ring);
+  H.forEach((n, h) => {
+    const a = (h / 24) * Math.PI * 2 - Math.PI / 2;
+    const l = 4 + (n / max) * len;
+    const ln = document.createElementNS(ns, 'line');
+    ln.setAttribute('x1', cx + Math.cos(a) * r0); ln.setAttribute('y1', cy + Math.sin(a) * r0);
+    ln.setAttribute('x2', cx + Math.cos(a) * (r0 + l)); ln.setAttribute('y2', cy + Math.sin(a) * (r0 + l));
+    ln.setAttribute('stroke', h < 5 ? 'var(--accent)' : 'var(--muted)');
+    ln.setAttribute('stroke-opacity', h < 5 ? '1' : '0.55');
+    ln.setAttribute('stroke-width', '6'); ln.setAttribute('stroke-linecap', 'round');
+    const t = document.createElementNS(ns, 'title'); t.textContent = String(h).padStart(2, '0') + ':00 – ' + n + ' commits';
+    ln.appendChild(t);
+    svg.appendChild(ln);
+  });
+  [0, 6, 12, 18].forEach(h => {
+    const a = (h / 24) * Math.PI * 2 - Math.PI / 2;
+    const t = document.createElementNS(ns, 'text');
+    t.setAttribute('x', cx + Math.cos(a) * 112); t.setAttribute('y', cy + Math.sin(a) * 112 + 3.5);
+    t.setAttribute('text-anchor', 'middle'); t.setAttribute('font-size', '10'); t.setAttribute('fill', 'var(--muted)');
+    t.setAttribute('font-family', 'JetBrains Mono, monospace');
+    t.textContent = String(h).padStart(2, '0');
+    svg.appendChild(t);
+  });
+  const c1 = document.createElementNS(ns, 'text');
+  c1.setAttribute('x', cx); c1.setAttribute('y', cy - 2); c1.setAttribute('text-anchor', 'middle');
+  c1.setAttribute('font-size', '17'); c1.setAttribute('font-weight', '700'); c1.setAttribute('fill', 'var(--ink)');
+  c1.setAttribute('font-family', 'Unbounded, sans-serif'); c1.textContent = '23:00';
+  const c2 = document.createElementNS(ns, 'text');
+  c2.setAttribute('x', cx); c2.setAttribute('y', cy + 14); c2.setAttribute('text-anchor', 'middle');
+  c2.setAttribute('font-size', '10'); c2.setAttribute('fill', 'var(--muted)'); c2.textContent = 'peak hour';
+  svg.appendChild(c1); svg.appendChild(c2);
+  const W = [['Mon',92],['Tue',63],['Wed',57],['Thu',115],['Fri',117],['Sat',102],['Sun',102]];
+  const wk = document.getElementById('week');
+  W.forEach(([d, n]) => {
+    const row = document.createElement('div');
+    row.innerHTML = '<span></span><div class="bar"><i></i></div><em></em>';
+    row.querySelector('span').textContent = d;
+    row.querySelector('i').style.width = (n / 117 * 100) + '%';
+    row.querySelector('em').textContent = n;
+    wk.appendChild(row);
+  });
+})();
+
+const confetti = document.getElementById('confetti');
+function burst() {
+  if (reduce) return;
+  const ctx = confetti.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const W = innerWidth, H = innerHeight;
+  confetti.width = W * dpr; confetti.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const cols = [css('--c-back'), css('--c-front'), css('--c-mod'), css('--c-docs'), css('--accent')];
+  const parts = Array.from({ length: 140 }, () => ({
+    x: W / 2 + (Math.random() - 0.5) * W * 0.3, y: H * 0.35, vx: (Math.random() - 0.5) * 12, vy: -Math.random() * 11 - 4,
+    r: Math.random() * Math.PI, vr: (Math.random() - 0.5) * 0.3, w: 6 + Math.random() * 6, h: 3 + Math.random() * 4, c: cols[Math.floor(Math.random() * cols.length)]
+  }));
+  const t0 = performance.now();
+  (function frame(t) {
+    ctx.clearRect(0, 0, W, H);
+    parts.forEach(p => { p.vy += 0.28; p.vx *= 0.99; p.x += p.vx; p.y += p.vy; p.r += p.vr;
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r); ctx.fillStyle = p.c; ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h); ctx.restore(); });
+    if (t - t0 < 2600) requestAnimationFrame(frame); else ctx.clearRect(0, 0, W, H);
+  })(t0);
+}
+
+let speed = 2, token = 0, playing = false;
+const playBtn = document.getElementById('play');
+const playLabel = playBtn.querySelector('span');
+const wait = ms => new Promise(res => setTimeout(res, reduce ? Math.min(ms, 120) : ms / speed));
+document.querySelectorAll('.speed button').forEach(b => b.addEventListener('click', () => {
+  speed = Number(b.dataset.s);
+  document.querySelectorAll('.speed button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+}));
+function showAll() {
+  resetChat();
+  chat.style.scrollBehavior = 'auto';
+  MSGS.forEach(m => addMsg(m, false));
+  if (sentWish) showWish(sentWish, false);
+  chat.scrollTop = chat.scrollHeight;
+  chat.style.scrollBehavior = '';
+  setDate(END, true);
+}
+async function replay() {
+  const my = ++token;
+  playing = true; playLabel.textContent = 'Skip to today';
+  resetChat();
+  REPOS.forEach(r => { cur[r.k] = 0; });
+  setDate(START, true);
+  await wait(500);
+  for (const m of MSGS) {
+    if (my !== token) return;
+    if (m.s !== 'sys') { showTyping(m.s, !!m.st); await wait(m.t && m.t.length > 60 ? 1100 : 800); if (my !== token) return; hideTyping(); }
+    else await wait(500);
+    addMsg(m, true);
+    setDate(m.d);
+    await wait(650);
+  }
+  if (my !== token) return;
+  playing = false; playLabel.textContent = 'Replay two years';
+  if (sentWish) showWish(sentWish, true);
+  burst();
+}
+playBtn.addEventListener('click', () => {
+  if (playing) { token++; playing = false; hideTyping(); showAll(); playLabel.textContent = 'Replay two years'; }
+  else replay();
+});
+
+const form = document.getElementById('composer');
+const wish = document.getElementById('wish');
+const sendBtn = form.querySelector('.send');
+const DRAFT = 'Happy 2nd birthday, messenger 🎂🎉';
+const WISH_KEY = 'messenger-turns-two:wish';
+const REPLY = 'Thank you! On to year three 🚀';
+let sentWish = null;
+try { const raw = localStorage.getItem(WISH_KEY); if (raw) { const w = JSON.parse(raw); if (w && w.tm) sentWish = { tm: String(w.tm).slice(0, 5) }; } } catch (e) { sentWish = null; }
+function showWish(w, animate) {
+  addMsg({ d: END, s: 'me', t: DRAFT, tm: w.tm }, animate);
+  addMsg({ d: END, s: 'back', t: REPLY, tm: w.tm }, animate);
+}
+function lockComposer() {
+  wish.value = '';
+  wish.disabled = true;
+  wish.placeholder = 'You sent your wish 🎉';
+  sendBtn.disabled = true;
+  sendBtn.setAttribute('aria-label', 'Wish sent');
+}
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  if (sentWish) return;
+  if (playing) { token++; playing = false; hideTyping(); showAll(); playLabel.textContent = 'Replay two years'; }
+  const w = { tm: nowTime() };
+  sentWish = w;
+  try { localStorage.setItem(WISH_KEY, JSON.stringify(w)); } catch (e2) {}
+  lockComposer();
+  addMsg({ d: END, s: 'me', t: DRAFT, tm: w.tm }, true);
+  const my = token;
+  await new Promise(r => setTimeout(r, 400));
+  if (my !== token) return;
+  showTyping('back');
+  await new Promise(r => setTimeout(r, 1100));
+  if (my !== token) return;
+  hideTyping();
+  addMsg({ d: END, s: 'back', t: REPLY, tm: w.tm }, true);
+  burst();
+});
+
+if (sentWish) lockComposer();
+showAll();
+</script>
+</body>
+</html>

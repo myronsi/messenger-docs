@@ -2,17 +2,21 @@ import { useCallback, useEffect, useState } from 'react';
 
 export const LEGAL_DOCS = ['privacy', 'terms', 'guidelines', 'imprint'] as const;
 export const LANGUAGES = ['en', 'de', 'ru', 'es'] as const;
+export const ANNIVERSARY_PAGES = ['two-years', 'wrapped'] as const;
 
 export type LegalDoc = (typeof LEGAL_DOCS)[number];
 export type Language = (typeof LANGUAGES)[number];
-export type Route = { page: 'help' } | { page: 'legal'; doc: LegalDoc; lang: Language | null };
+export type AnniversaryPageName = (typeof ANNIVERSARY_PAGES)[number];
+export type Route = { page: 'help' } | { page: 'legal'; doc: LegalDoc; lang: Language | null } | { page: AnniversaryPageName };
 
 const isLegalDoc = (value: string): value is LegalDoc => (LEGAL_DOCS as readonly string[]).includes(value);
+const isAnniversaryPage = (value: string): value is AnniversaryPageName => (ANNIVERSARY_PAGES as readonly string[]).includes(value);
 export const isLanguage = (value: string): value is Language => (LANGUAGES as readonly string[]).includes(value);
 
 export const parseRoute = (hash: string): Route => {
   if (!hash.startsWith('#/')) return { page: 'help' };
   const [doc = '', lang = ''] = hash.slice(2).split('/');
+  if (isAnniversaryPage(doc)) return { page: doc };
   if (!isLegalDoc(doc)) return { page: 'help' };
   return { page: 'legal', doc, lang: isLanguage(lang) ? lang : null };
 };
